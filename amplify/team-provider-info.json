@@ -1,0 +1,15 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-roboticists-prod-235753-authRole",
+            "UnauthRoleArn": "arn:aws:iam::830878017923:role/amplify-roboticists-prod-235753-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::830878017923:role/amplify-roboticists-prod-235753-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-roboticists-prod-235753-deployment",
+            "UnauthRoleName": "amplify-roboticists-prod-235753-unauthRole",
+            "StackName": "amplify-roboticists-prod-235753",
+            "StackId": "arn:aws:cloudformation:eu-west-1:830878017923:stack/amplify-roboticists-prod-235753/807062c0-c625-11ea-9a3f-069423446670",
+            "AmplifyAppId": "doaw8a5y7ij47"
+        }
+    }
+}
