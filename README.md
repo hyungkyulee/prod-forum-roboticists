@@ -173,9 +173,10 @@ Edit your schema at /Users/albert/_proj/roboticists/prod-forum-roboticists/ampli
 ✔ Generated GraphQL operations successfully and saved at src/graphql
 ✔ All resources are updated in the cloud
 
-GraphQL endpoint: https://ixklwvn73bbrpj4aasxv6f4lue.appsync-api.eu-west-1.amazonaws.com/graphql
-GraphQL API KEY: da2-nj36ob4kdnaf7jegfk4ij5htky
+GraphQL endpoint: https://******.appsync-api.eu-west-1.amazonaws.com/graphql
+GraphQL API KEY: da2-*************************
 ```
+(* endpoint and API Key can be referred at [project]/src/aws-exports.js
 
 4) Launch AWS to test Graphql api on Appsync
 ```
