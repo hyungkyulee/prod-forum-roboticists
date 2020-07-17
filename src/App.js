@@ -17,4 +17,4 @@ function App() {
 }
 
 export default withAuthenticator(App,
-  { includesGreetings: true})
+  { includeGreetings: true})
