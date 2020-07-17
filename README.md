@@ -224,32 +224,23 @@ complete the authentication setup for this app will need to accomplish the follo
 Enable users to sign up and sign in
 ```
 $ amplify add auth
+Scanning for plugins...
+Plugin scan successful
 Using service: Cognito, provided by: awscloudformation
  
  The current configured provider is Amazon Cognito. 
  
- Do you want to use the default authentication and security configuration? Defau
-lt configuration
+ Do you want to use the default authentication and security configuration? Default configuration
  Warning: you will not be able to edit these selections. 
- How do you want users to be able to sign in? Username
- Do you want to configure advanced settings? Yes, I want to make some additional
- changes.
- Warning: you will not be able to edit these selections. 
- What attributes are required for signing up? Email
- Do you want to enable any of the following capabilities? 
-Successfully added resource jinyus3a9d20ff locally
+ How do you want users to be able to sign in? Email
+ Do you want to configure advanced settings? No, I am done.
+Successfully added resource roboticistsc2cce626 locally
 
-$ amplify update auth
-Please note that certain attributes may not be overwritten if you choose to use defaults settings.
+Some next steps:
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
 
-You have configured resources that might depend on this Cognito resource.  Updating this Cognito resource could have unintended side effects.
-
-Using service: Cognito, provided by: awscloudformation
- What do you want to do? Create or update Cognito user pool groups
-? Provide a name for your user pool group: Admin
-? Do you want to add another User Pool Group No
-✔ Sort the user pool groups in order of preference · Admin
-Successfully updated resource jinyus3a9d20ff locally
+$ amplify push
 ```
 
 #### Storage
