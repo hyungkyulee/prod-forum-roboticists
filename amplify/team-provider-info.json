@@ -10,6 +10,11 @@
             "StackName": "amplify-roboticists-prod-235753",
             "StackId": "arn:aws:cloudformation:eu-west-1:830878017923:stack/amplify-roboticists-prod-235753/807062c0-c625-11ea-9a3f-069423446670",
             "AmplifyAppId": "doaw8a5y7ij47"
+        },
+        "categories": {
+            "auth": {
+                "roboticistsc2cce626": {}
+            }
         }
     }
 }
