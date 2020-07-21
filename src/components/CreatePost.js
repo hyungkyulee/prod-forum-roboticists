@@ -16,7 +16,7 @@ class CreatePost extends Component {
         // console.log("Current User: ", user.attributes.email)
         // console.log("User ID: ", user.username)
         this.setState({
-          postOwnerId: user.username,
+          postOwnerId: user.username, // if default username is set to email, auth's username will be same as id (user.attributes.sub).
           postOwnerUsername: user.attributes.email
         })
       })
@@ -29,6 +29,7 @@ class CreatePost extends Component {
   handleAddPost = async event => {
     event.preventDefault()
 
+    // input object should be aligned with the schema of mutation.js of graphql
     const input = {
       postOwnerId: this.state.postOwnerId,
       postOwnerUsername: this.state.postOwnerUsername,
@@ -64,8 +65,7 @@ class CreatePost extends Component {
           value={this.state.postBody}
           onChange={this.handleChangePost} />
 
-        <input className="btn" style={{fontSize: '19px'}}
-          type="submit" />
+        <input className="btn" style={{fontSize: '19px'}} type="submit" />
 
       </form>
     )

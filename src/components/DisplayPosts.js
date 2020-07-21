@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { listPosts } from '../graphql/queries'
-import { onCreatePost } from '../graphql/subscriptions'
+import { onCreatePost, onDeletePost, onUpdatePost } from '../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
 import DeletePost from './DeletePost'
 import EditPost from './EditPost'
@@ -22,13 +22,36 @@ class DisplayPosts extends Component {
           const prevPosts = this.state.posts.filter(post => post.id !== newPost.id) // 3) get the current set of posts
           const updatedPosts = [newPost, ...prevPosts]                              // 4) concatenate the new post to the current set of posts
 
-          this.setState({ posts: updatedPosts })                                      // 5) update the current set of posts in state machine
+          this.setState({ posts: updatedPosts })                                    // 5) update the current set of posts in state machine
+        }
+      })
+    
+    this.deletePostListener = API.graphql(graphqlOperation(onDeletePost))
+      .subscribe({
+        next: postData => {
+          const deletedPost = postData.value.data.onDeletePost
+          const updatedPosts = this.state.posts.filter(post => post.id !== deletedPost.id)
+          this.setState({posts : updatedPosts})
+        }
+      })
+
+    this.updatePostListener = API.graphql(graphqlOperation(onUpdatePost))
+      .subscribe({
+        next: postData => {
+          const {posts} = this.state
+          const updatePost = postData.value.data.onUpdatePost
+          const index = posts.findIndex(post => post.id === updatePost.id)
+          const updatePosts = [...posts.slice(0, index), updatePost, ...posts.slice(index+1)]
+
+          this.setState({posts: updatePosts})
         }
       })
   }
 
   componentWillUnmount() {
     this.createPostListener.unsubscribe()
+    this.deletePostListener.unsubscribe()
+    this.updatePostListener.unsubscribe()
   }
 
   getPosts = async () => {
@@ -58,7 +81,7 @@ class DisplayPosts extends Component {
             </span>
             <p> {post.postBody}</p>
             <DeletePost data={post} />
-            <EditPost />
+            <EditPost {...post} />
           </div>
         )
       })
