@@ -250,52 +250,14 @@ $ amplify add storage
 ? Please select from one of the below mentioned services: Content (Images, audio
 , video, etc.)
 ? Please provide a friendly name for your resource that will be used to label th
-is category in the project: jinyus
-? Please provide bucket name: s3jinyus
+is category in the project: ***
+? Please provide bucket name: ***
 ? Who should have access: Auth and guest users
 ? What kind of access do you want for Authenticated users? create/update, read, 
 delete
 ? What kind of access do you want for Guest users? read
 ? Do you want to add a Lambda Trigger for your S3 Bucket? No
 ```
-
-
-
-#### Deploy to AWS
-```
-$ amplify push --y
-✔ Successfully pulled backend environment prod from the cloud.
-
-Current Environment: prod
-
-| Category | Resource name                     | Operation | Provider plugin   |
-| -------- | --------------------------------- | --------- | ----------------- |
-| Function | jinyus4f3f9efcDefineAuthChallenge | Create    | awscloudformation |
-| Auth     | jinyus3a9d20ff                    | Create    | awscloudformation |
-| Auth     | userPoolGroups                    | Create    | awscloudformation |
-| Storage  | jinyus                            | Create    | awscloudformation |
-| Api      | jinyusapi                         | Create    | awscloudformation |
-
-The following types do not have '@auth' enabled. Consider using @auth with @model
-	 - Blog
-	 - Post
-	 - Comment
-Learn more about @auth here: https://docs.amplify.aws/cli/graphql-transformer/directives#auth
-GraphQL schema compiled successfully.
-
-Edit your schema at /Users/albert/_proj/jinyus/prod-forum-jinyus/amplify/backend/api/jinyusapi/schema.graphql or place .graphql files in a directory at /Users/albert/_proj/jinyus/prod-forum-jinyus/amplify/backend/api/jinyusapi/schema
-⠴ Updating resources in the cloud. This may take a few minutes...
-:
-:
-:
-✔ Generated GraphQL operations successfully and saved at src/graphql
-✔ All resources are updated in the cloud
-
-GraphQL endpoint: https://jt5yic4tgbbode5z7bd3i274jm.appsync-api.eu-west-1.amazonaws.com/graphql
-GraphQL API KEY: da2-k7puqsa6nvfhrguabo25oedx7e
-```
-
-
 
 
 ### AWS Appsync
