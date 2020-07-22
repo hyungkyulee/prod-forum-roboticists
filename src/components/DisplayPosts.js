@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { listPosts } from '../graphql/queries'
-import { onCreatePost, onDeletePost, onUpdatePost } from '../graphql/subscriptions'
+import { onCreateComment, onCreatePost, onDeletePost, onUpdatePost } from '../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
 import DeletePost from './DeletePost'
 import EditPost from './EditPost'
+import CreateComment from './CreateComment'
+import { FaBeer } from 'react-icons/fa'
+import DisplayComments from './DisplayComments'
 
 class DisplayPosts extends Component {
 
@@ -46,12 +49,28 @@ class DisplayPosts extends Component {
           this.setState({posts: updatePosts})
         }
       })
+
+    this.createPostCommentListener = API.graphql(graphqlOperation(onCreateComment))
+      .subscribe({
+        next: commentData => {
+          const createdComment = commentData.value.data.onCreateComment // same comment id as post id
+          let posts = [ ...this.state.posts ]
+
+          for (let post of posts ) {
+            if (createdComment.post.id === post.id) {   // find out the post having this comment
+              post.comments.items.push(createdComment)
+            }
+          }
+          this.setState({ posts })
+        }
+      })
   }
 
   componentWillUnmount() {
     this.createPostListener.unsubscribe()
     this.deletePostListener.unsubscribe()
     this.updatePostListener.unsubscribe()
+    this.createPostCommentListener.unsubscribe()
   }
 
   getPosts = async () => {
@@ -80,8 +99,23 @@ class DisplayPosts extends Component {
               </time>
             </span>
             <p> {post.postBody}</p>
-            <DeletePost data={post} />
-            <EditPost {...post} />
+            <br />
+            <span>
+              <DeletePost data={post} />
+              <EditPost {...post} />
+            </span>
+            <span>
+              <CreateComment postId={post.id} />
+              {
+                post.comments.items.length > 0 && 
+                <span style={{fontSize: '19px', color: 'gray'}}>
+                  Comments: 
+                </span>
+              }
+              {
+                post.comments.items.map((comment, index) => <DisplayComments key={index} commentData={comment} />)
+              }
+            </span>
           </div>
         )
       })
