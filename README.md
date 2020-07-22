@@ -299,3 +299,30 @@ GraphQL API KEY: da2-k7puqsa6nvfhrguabo25oedx7e
 
 
 ### AWS Appsync
+API key renew
+
+AWS -> service -> Appsync -> settings -> Configuration -> create the new API key -> copy it and update it into 'aws-expoerts.js'
+```
+:
+"aws_appsync_apiKey": "da2-*************",
+:
+```
+
+### AWS deployment (production)
+AWS -> service -> AWS Amplify -> Github
+
+1) Step 1 - Add repository branch 
+   - select the relevant repository from the github
+2) Step 2 - Configure build settings
+   - select the amplify backend environment
+   - select the service role
+3) Step 3 - Review
+   - save and deploy
+
+
+### React Packages
+
+#### react-icons
+```
+$ npm install react-icons --save
+```
