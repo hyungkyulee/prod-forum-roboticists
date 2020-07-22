@@ -308,7 +308,8 @@ AWS -> service -> Appsync -> settings -> Configuration -> create the new API key
 :
 ```
 
-### AWS deployment (production)
+### AWS deployment 
+#### Amplify Console
 AWS -> service -> AWS Amplify -> Github
 
 1) Step 1 - Add repository branch 
@@ -318,6 +319,11 @@ AWS -> service -> AWS Amplify -> Github
    - select the service role
 3) Step 3 - Review
    - save and deploy
+
+#### S3
+amplify hosting add
+configure the http or https, project name, etc.
+amplify publish -> Y
 
 
 ### React Packages
