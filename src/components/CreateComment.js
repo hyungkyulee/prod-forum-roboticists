@@ -14,7 +14,7 @@ class CreateComment extends Component {
       .then(user => {
         this.setState({
           commentOwnerId: user.username,
-          commentOwnerUsername: user.attributes.email
+          commentOwnerUsername: user.attributes.email.split('@')[0]
         })
       })
   }

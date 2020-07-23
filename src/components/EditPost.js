@@ -56,7 +56,7 @@ class EditPost extends Component {
       .then(user => {
         this.setState({
           postOwnerId: user.username, 
-          postOwnerUsername: user.attributes.email
+          postOwnerUsername: user.attributes.email.split('@')[0]
         })
       })
   }

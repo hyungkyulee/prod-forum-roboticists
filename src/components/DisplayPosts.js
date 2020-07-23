@@ -29,7 +29,7 @@ class DisplayPosts extends Component {
       .then(user => {
         this.setState({
           currentUserId: user.username,
-          currentUsername: user.attributes.email
+          currentUsername: user.attributes.email.split('@')[0]
         })
       })
 
@@ -185,7 +185,9 @@ class DisplayPosts extends Component {
                 {new Date(post.createdAt).toDateString()}
               </time>
             </span>
-            <p> {post.postBody}</p>
+            
+            {/* <p> {post.postBody}</p> */}
+            <p dangerouslySetInnerHTML={{ __html: post.postBody }} />
             <br />
             <span>
               { (post.postOwnerId === this.state.currentUserId) && 

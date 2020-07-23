@@ -19,7 +19,7 @@ class CreatePost extends Component {
         // console.log("User ID: ", user.username)
         this.setState({
           postOwnerId: user.username, // if default username is set to email, auth's username will be same as id (user.attributes.sub).
-          postOwnerUsername: user.attributes.email
+          postOwnerUsername: user.attributes.email.split('@')[0]
         })
       })
   }

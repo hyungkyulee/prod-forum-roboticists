@@ -74,8 +74,8 @@ class WysiwygEditor extends Component {
           // onChange={this.onChange}
           placeholder="The message goes here..." />
 
-        <h4>Underlying HTML</h4>
-        {/* <div className="html-view">
+        {/* <h4>HTML Log for testing</h4>
+        <div className="html-view">
           {getHtml(editorState)}
         </div> */}
         <button className="btn btn-success" data-toggle="modal" data-target="#WysiwygPreviewModal">
