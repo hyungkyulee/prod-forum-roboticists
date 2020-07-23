@@ -294,3 +294,35 @@ amplify publish -> Y
 ```
 $ npm install react-icons --save
 ```
+
+#### draft-js wysiwyg
+1) install the package of draftjs and react-draft-wysiwyg
+```
+npm install -S draft-js react-draft-wysiwyg
+```
+
+2) install the conversion package from draftjs to html
+```
+npm install draftjs-to-html
+```
+
+3) link the bootstrap (update public/index.html)
+```
+ <!-- 
+      Added the cdn link 
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+:
+
+<!-- Ensure the scripts below are put in this very order -->
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
+
+```
+4) editor component : WysiwygEditor.js
+5) apply for the additional style at App.css
+6) import wysiwyg style from node_modules at CreatePost.js of App.js
+7) put the component: <WysiwygEditor /> on the editing area (e.g. CreatePost.js)
+8) preview modal component : WysiwygPreviewModal.js
