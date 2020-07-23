@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import { createPost } from '../graphql/mutations'
+import { WysiwygEditor } from './WysiwygEditor'
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 class CreatePost extends Component {
   state = {
@@ -25,6 +27,11 @@ class CreatePost extends Component {
   handleChangePost = event => this.setState({ 
     [event.target.name] : event.target.value
   })
+
+  handleChangePostBody = async (contents) => {
+    this.setState({postBody: contents})
+    console.log("postBody: ", this.state.postBody)
+  }
 
   handleAddPost = async event => {
     event.preventDefault()
@@ -55,7 +62,7 @@ class CreatePost extends Component {
           value={this.state.postTitle}
           onChange={this.handleChangePost} />
 
-        <textarea 
+        {/* <textarea 
           type="text" 
           name="postBody"
           rows="3"
@@ -63,9 +70,13 @@ class CreatePost extends Component {
           placeholder="New Blog Post"
           required 
           value={this.state.postBody}
-          onChange={this.handleChangePost} />
+          onChange={this.handleChangePost} /> */}
+
+        <WysiwygEditor handleChangePostBody={this.handleChangePostBody} />
 
         <input className="btn" style={{fontSize: '19px'}} type="submit" />
+
+        
 
       </form>
     )

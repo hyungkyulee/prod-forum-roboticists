@@ -73,14 +73,14 @@ class EditPost extends Component {
               <input style={{fontSize: "19px"}} 
                 type="text" 
                 name="postTitle"
-                placeHolder="Title"
+                placeholder="Title"
                 value={this.state.postData.postTitle}
                 onChange={this.handleTitle} />
 
               <input style={{height: "150px", fontSize: "19px"}} 
                 type="text" 
                 name="postBody"
-                placeHolder="Title"
+                placeholder="Title"
                 value={this.state.postData.postBody}
                 onChange={this.handleBody} />
               

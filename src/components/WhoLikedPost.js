@@ -7,13 +7,13 @@ class WhoLikedPost extends Component {
     return (
       allUsers.map((user) => {
         return(
-          <>
+          // <> it's removed because we have only single <div></div>
           <div key={user}>
             <span style={{fontStyle:"bold", color: "gray"}}>
               {user}
             </span>
           </div>
-          </>
+          // </>
         )
       })
     )

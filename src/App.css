@@ -59,7 +59,8 @@ input[type=submit]:hover {
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  margin: 1rem;
+  width: 100%;
+  margin: 0rem;
   padding: 1rem;
 }
 
@@ -100,8 +101,9 @@ input[type=submit]:hover {
 }
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+  /* background-color: #f2f2f2; */
+  background-color: #ffffff;
+  padding: 0px;
 }
  .clean-area  {
   border-radius: 0px;
