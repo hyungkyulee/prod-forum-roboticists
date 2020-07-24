@@ -1,9 +1,11 @@
 import React from 'react'
 import './App.css'
+import Header from './components/Header'
 import DisplayPosts from './components/DisplayPosts'
 import CreatePost from './components/CreatePost'
 import { withAuthenticator } from 'aws-amplify-react'
 import { Auth } from 'aws-amplify'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -12,14 +14,21 @@ function App() {
   }
 
   return (
-    <div className="App">
-      
+    <div>
+      <Header />
       <button style={{alignContent:'flex-end', textAlign:'center'}} onClick={signOut}>Logout</button>
       <CreatePost />
       <DisplayPosts />
-
-
+      <Footer />
     </div>
+    // <div className="App">
+      
+    //   <button style={{alignContent:'flex-end', textAlign:'center'}} onClick={signOut}>Logout</button>
+    //   <CreatePost />
+    //   <DisplayPosts />
+
+
+    // </div>
   );
 }
 
