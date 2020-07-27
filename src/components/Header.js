@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import '../../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css'
 
 export default class Header extends Component {
   render() {
     return (
-      <div>
+      <div >
         {/* Navbar */}
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
           {/* Left navbar links */}
@@ -13,20 +14,20 @@ export default class Header extends Component {
               <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars" /></a>
             </li>
             <li className="nav-item d-none d-sm-inline-block">
-              <a href="index3.html" className="nav-link">Home</a>
+              <Link to="/" className="nav-link">Home</Link>
             </li>
             <li className="nav-item d-none d-sm-inline-block">
-              <a href="#" className="nav-link">Contact</a>
+              <Link to="/about-forum" className="nav-link">About Forum</Link>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Help
-              </a>
+              <Link className="nav-link dropdown-toggle" to="/projects" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Projects
+              </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">FAQ</a>
-                <a className="dropdown-item" href="#">Support</a>
+                <Link className="dropdown-item" to="/projects/standards">Regulation</Link>
+                <Link className="dropdown-item" to="/projects/ml">Machine Learning</Link>
                 <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">Contact</a>
+                <Link className="dropdown-item" to="/projects/ai">AI</Link>
               </div>
             </li>
           </ul>
