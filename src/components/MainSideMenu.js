@@ -22,6 +22,12 @@ const menuData = [
         nodes: []
       },
       {
+        key: "datalego",
+        label: "Datalego",
+        url: "https://www.google.com/search?q=canidae",
+        nodes: []
+      },
+      {
         key: "ds",
         label: "Data Science",
         url: "https://www.google.com/search?q=canidae",
@@ -74,6 +80,26 @@ const menuData = [
           }
         ]
       }
+    ]
+  },
+  {
+    key: "accounts",
+    label: "Accounts",
+    url: "https://www.google.com/search?q=reptile",
+    nodes: [
+      {
+        key: "invoice",
+        label: "Invoice",
+        href: "/accounts/invoice",
+        url: "https://www.google.com/search?q=canidae",
+        nodes: []
+      },
+      {
+        key: "settings",
+        label: "Settings",
+        url: "https://www.google.com/search?q=canidae",
+        nodes: []
+      },
     ]
   }
 ];
@@ -130,7 +156,8 @@ class MainSideMenu extends Component {
     return (
       // <Redirect to={`/${key}`} />
       // <Redirect to='/forums/standards' />
-      await this.props.history.push('/forums/standards')
+      // await this.props.history.push('/forums/standards')
+      await this.props.history.push(`/${key}`)
     )
   }
 
@@ -138,24 +165,25 @@ class MainSideMenu extends Component {
   render() {
     return (
       <div>
+
         {/* Main Sidebar Container */}
-        <aside className="main-sidebar sidebar-dark-primary elevation-4">
+        <div className="main-sidebar sidebar-light-primary elevation-4">
           {/* Brand Logo */}
           <a href="/home" className="brand-link">
             <img src="../../roboticists.png" alt="Roboticists Logo" className="brand-image elevation-3" style={{opacity: '1.0'}} />
             <span className="brand-text font-weight-light"><b>Roboticists</b></span>
           </a>
           {/* Sidebar */}
-          <section className="sidebar">
+          <div className="sidebar">
             {/* Sidebar user panel (optional) */}
-            <section className="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div className="user-panel mt-3 pb-3 mb-3 d-flex">
               <p className="image">
                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" className="img-circle elevation-2" alt="User Image" />
               </p>
               <p className="info">
                 <a href="#" className="d-block">{this.state.currentUsername}</a>
               </p>
-            </section>
+            </div>
             {/* Sidebar Menu */}
             <nav className="mt-2">
               {/* <TreeMenu data={this.state.data} hasSearch={false} /> */}
@@ -181,9 +209,9 @@ class MainSideMenu extends Component {
               
             </nav>
             {/* /.sidebar-menu */}
-          </section>
+          </div>
           {/* /.sidebar */}
-        </aside>
+        </div>
       </div>
     )
   }

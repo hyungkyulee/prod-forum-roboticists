@@ -10,6 +10,7 @@ import DisplayComments from './DisplayComments'
 import { createLike } from '../graphql/mutations'
 import WhoLikedPost from './WhoLikedPost'
 
+
 class DisplayPosts extends Component {
 
   state = {
@@ -172,69 +173,92 @@ class DisplayPosts extends Component {
     const { posts } = this.state
 
     return (
-      posts.map((post) => {
-        return (
-          <div className='posts' style={rowStyle} key={post.id}>
-            <h1> { post.postTitle } </h1>
-            <span style={{fontStyle: "italic", color: "#0ca5e29"}}>
-              { "Wrote by: " } { post.postOwnerUsername }
+        <section className="content">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-12">
+              {
+                posts.map((post) => {
+                  return (
+                    <div className="card card-primary card-outline">
+                      <div className="card-header">
+                        <h5 className="m-0"> { post.postTitle } </h5>
+                      </div>
+                      <div className="card-body">
+                        <h6 className="card-title">
+                          <span style={{fontStyle: "italic", color: "#0ca5e29"}}>
+                            { "Wrote by: " } { post.postOwnerUsername }
 
-              { " on " }
-              <time>
-                {" "}
-                {new Date(post.createdAt).toDateString()}
-              </time>
-            </span>
-            
-            {/* <p> {post.postBody}</p> */}
-            <p dangerouslySetInnerHTML={{ __html: post.postBody }} />
-            <br />
-            <span>
-              { (post.postOwnerId === this.state.currentUserId) && 
-                <DeletePost data={post} />
-              }
-              { (post.postOwnerId === this.state.currentUserId) && 
-                <EditPost {...post} />
-              }
-              <span>
-                <p className="alert"> {(post.postOwnerId === this.state.currentUserId) && this.state.errorMessage} </p>
-                <p style={{color: (post.likes.items.length>0)? "blue" : "gray"}}
-                  className="like-button"
-                  onMouseEnter={ () => this.handleMouseHover(post.id)}
-                  onMouseLeave={ () => this.handleMouseHoverLeave()}
-                  onClick={() => this.handleLike(post.id)}>
-                  <FaThumbsUp />
-                  {
-                    post.likes.items.length
-                  }
-                </p>
-                {
-                  this.state.isHovering &&
-                    <div className="users-liked">
-                      {(this.state.likedBy.length === 0) ? "liked by no one" : "liked by:" }
-                      {(this.state.likedBy.length === 0) ? <FaSadTear /> : <WhoLikedPost data={this.state.likedBy} />}
-                      
+                            { " on " }
+                            <time>
+                              {" "}
+                              {new Date(post.createdAt).toDateString()}
+                            </time>
+                          </span>
+                        </h6>
+                        {/* <p> {post.postBody}</p> */}
+                        <p className="card-text" dangerouslySetInnerHTML={{ __html: post.postBody }} />
+                        <div className="attachment-block clearfix"></div>
+                        <div className="clearfix">
+                          { (post.postOwnerId === this.state.currentUserId) && 
+                            <DeletePost data={post} />
+                          }
+                          { (post.postOwnerId === this.state.currentUserId) && 
+                            <EditPost {...post} />
+                          }
+                        </div>
+                        <div className="card-text card-feedback" style={{marginBottom: '10px'}}>
+                          <p className="alert"> {(post.postOwnerId === this.state.currentUserId) && this.state.errorMessage} </p>
+                          {/* <p style={{color: (post.likes.items.length>0)? "blue" : "gray"}}
+                            className="like-button"
+                            onMouseEnter={ () => this.handleMouseHover(post.id)}
+                            onMouseLeave={ () => this.handleMouseHoverLeave()}
+                            onClick={() => this.handleLike(post.id)}>
+                            <FaThumbsUp />
+                            {
+                              post.likes.items.length
+                            }
+                          </p> */}
+                          <button type="button" className="btn btn-default btn-sm" style={{width: '80px', marginRight: '5px'}}>
+                            <i className="fas fa-share mr-2" />Share
+                          </button>
+                          <button type="button" className="btn btn-default btn-sm" style={{width: '80px'}}
+                            onClick={() => this.handleLike(post.id)}>
+                            <i className="fas fa-thumbs-up mr-2" />Like
+                          </button>
+                          <span className="float-right text-mute">
+                            {post.likes.items.length} comments
+                          </span>
+                          {/* {
+                            this.state.isHovering &&
+                              <p className="card-text">
+                                {(this.state.likedBy.length === 0) ? "liked by no one" : "liked by:" }
+                                {(this.state.likedBy.length === 0) ? <FaSadTear /> : <WhoLikedPost data={this.state.likedBy} />}
+                              </p>
+                          } */}
+                        </div>
+                          
+                        <div className="card-footer card-comments">
+                          <CreateComment postId={post.id} />
+                          {
+                            post.comments.items.length > 0 && 
+                            <h6 className="card-title" style={{marginBottom: '10px'}}>
+                              {/* Comments:  */}
+                            </h6>
+                          }
+                          {
+                            post.comments.items.map((comment, index) => <DisplayComments key={index} commentData={comment} />)
+                          }
+                        </div>
+                      </div>
                     </div>
-                }
-              </span>
-            </span>
-            <span>
-              <CreateComment postId={post.id} />
-              {
-                post.comments.items.length > 0 && 
-                <span style={{fontSize: '19px', color: 'gray'}}>
-                  Comments: 
-                </span>
+                  )
+                })
               }
-              {
-                post.comments.items.map((comment, index) => <DisplayComments key={index} commentData={comment} />)
-              }
-            </span>
-            
+              </div>
+            </div>
           </div>
-        )
-      })
-      
+        </section>
     )
   }
 }

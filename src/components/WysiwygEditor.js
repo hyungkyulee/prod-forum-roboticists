@@ -69,7 +69,7 @@ class WysiwygEditor extends Component {
         <Editor 
           editorState={editorState}
           wrapperClassName="rich-editor draft-editor-wrapper"
-          editorClassName=".rich-editor DraftEditor-editorContainer"
+          editorClassName="rich-editor DraftEditor-editorContainer"
           onEditorStateChange={this.onEditorStateChange}
           // onChange={this.onChange}
           placeholder="The message goes here..." />
@@ -78,13 +78,13 @@ class WysiwygEditor extends Component {
         <div className="html-view">
           {getHtml(editorState)}
         </div> */}
-        <button className="btn btn-success" data-toggle="modal" data-target="#WysiwygPreviewModal">
+        {/* <button className="btn btn-success" data-toggle="modal" data-target="#WysiwygPreviewModal">
           Preview message
-        </button>
+        </button> */}
         <SuggestionsTag
           autocompleteState={autocompleteState}
         />
-        <WysiwygPreviewModal output={getHtml(editorState)} />
+        {/* <WysiwygPreviewModal output={getHtml(editorState)} /> */}
       </>
     );
   } 

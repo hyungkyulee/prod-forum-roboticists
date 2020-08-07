@@ -12,7 +12,7 @@ class DeletePost extends Component {
   render() {
     const post = this.props.data
     return (
-      <button onClick={ () => this.handleDeletePost(post.id)}>Delete</button>
+      <button className="btn btn-primary" style={{marginRight: '10px'}} onClick={ () => this.handleDeletePost(post.id)}>Delete</button>
     )
   }
 }

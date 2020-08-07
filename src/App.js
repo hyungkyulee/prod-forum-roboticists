@@ -21,6 +21,7 @@ import ForumAI from './pages/ForumAI'
 import ForumDS from './pages/ForumDS'
 import ForumOpencv from './pages/ForumOpencv'
 import ProjectFRDL from './pages/ProjectFRDL'
+import ForumDatalego from './pages/ForumDatalego'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
       <MainSideMenu />
         <Switch>
           <Route path="/forums/standards"> <ForumStandards /> </Route>
+          <Route path="/forums/datalego"> <ForumDatalego /> </Route>
           <Route path="/forums/ml"> <ForumML /> </Route>
           <Route path="/forums/ai"> <ForumAI /> </Route>
           <Route path="/forums/ds"> <ForumDS /> </Route>
