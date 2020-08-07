@@ -36,23 +36,19 @@ class CreateComment extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleAddComment}>
-          <textarea
-            type="text"
-            name="content"
-            placeholder="Add your comment ..."
+      <form action="#" method="post">
+        <div class="input-group" >
+          <textarea type="text" name="content" placeholder="Add your comment ..." class="form-control" 
             rows="3"
             cols="40"
             required
             value={this.state.content}
             onChange={this.handleChangeContent} />
-
-          <input className="btn" style={{fontSize: '19px'}} 
-            type="submit" 
-            value="Add Comment" />
-        </form>
-      </div>
+          <span class="input-group-append" style={{width: '200px'}}>
+            <button type="button" class="btn btn-primary" onClick={this.handleAddComment}>Add</button>
+          </span>
+        </div>
+      </form>
     )
   }
 }

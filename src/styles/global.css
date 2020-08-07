@@ -9,6 +9,8 @@
  }
 .draft-editor-wrapper {
   border: 1px solid #ccc;
+  background-color: #fff;
+  margin-bottom: 10px;
 }
 .html-view {
   background-color: #fff;
@@ -43,7 +45,7 @@ div {
 .rstm-tree-item-group {
   list-style-type: none;
   padding-left: 0;
-  /* border-top: 0px solid #ccc; */
+  border-top: 2px solid red;
   text-align: left;
   width: 100%;
   /* background: #343a40;  */
@@ -52,8 +54,8 @@ div {
 .rstm-tree-item {
   padding: 0.5rem 1rem;
   cursor: pointer;
-  color: #c2c7d0;
-  background: #343a40;
+  color: #343a40;
+  background: transparent;
   border-bottom: 0px solid #ccc;
   box-shadow: none;
   z-index: unset;

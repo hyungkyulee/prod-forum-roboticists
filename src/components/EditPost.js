@@ -89,7 +89,7 @@ class EditPost extends Component {
           </div>
         )
       }
-      <button onClick={this.handleModal}>Edit</button>
+      <button className="btn btn-primary" style={{marginRight: '10px'}} onClick={this.handleModal}>Edit</button>
       </>
     )
   }
