@@ -30,43 +30,43 @@ type Like @model {
 }
 
 
-type Company @model{ 
-   id: ID!
-   companyName: String!
-   companyAddress: String!
-   companyCountry: String!
-   companyPostcode: String!
-   companyPhone: String!
-   companyEmail: string!
-   companyBankName: String!
-   companySortcode: String!
-   companyAccountNumber: String!
-   companyAccountHolder: String!
-   companyRegNumber: String
-   companyVAT: String
-   companyBirthday: String
-   createdAt: String
-   invoices: [Invoice] @connection(name: "CompanyInvoices") #relationship with invoice, and it's array type
-   bills: [Bill] @connection(name: "CompanyBills") #relationship with bill, and it's array type
-}
+# type Company @model{ 
+#    id: ID!
+#    companyName: String!
+#    companyAddress: String!
+#    companyCountry: String!
+#    companyPostcode: String!
+#    companyPhone: String!
+#    companyEmail: string!
+#    companyBankName: String!
+#    companySortcode: String!
+#    companyAccountNumber: String!
+#    companyAccountHolder: String!
+#    companyRegNumber: String
+#    companyVAT: String
+#    companyBirthday: String
+#    createdAt: String
+#    invoices: [Invoice] @connection(name: "CompanyInvoices") #relationship with invoice, and it's array type
+#    bills: [Bill] @connection(name: "CompanyBills") #relationship with bill, and it's array type
+# }
 
-type Invoice @model {
-   id: ID!
-   fromName: String!
-   fromAddress: String!
-   fromPhone: String!
-   fromPhone: String!
-   commentOwnerUsername: String!
-   company: Company @connection(name: "CompanyInvoices")
-   content: String!
-   createdAt: String!
-}
+# type Invoice @model {
+#    id: ID!
+#    fromName: String!
+#    fromAddress: String!
+#    fromPhone: String!
+#    fromPhone: String!
+#    commentOwnerUsername: String!
+#    company: Company @connection(name: "CompanyInvoices")
+#    content: String!
+#    createdAt: String!
+# }
 
-type Bill @model {
-   id: ID!
-   commentOwnerId: String!
-   commentOwnerUsername: String!
-   company: Company @connection(name: "CompanyBills")
-   content: String!
-   createdAt: String!
-}
+# type Bill @model {
+#    id: ID!
+#    commentOwnerId: String!
+#    commentOwnerUsername: String!
+#    company: Company @connection(name: "CompanyBills")
+#    content: String!
+#    createdAt: String!
+# }
