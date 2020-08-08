@@ -227,7 +227,7 @@ class DisplayPosts extends Component {
                             <i className="fas fa-thumbs-up mr-2" />Like
                           </button>
                           <span className="float-right text-mute">
-                            {post.likes.items.length} comments
+                            {post.comments.items.length} comments
                           </span>
                           {/* {
                             this.state.isHovering &&
