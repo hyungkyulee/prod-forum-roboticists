@@ -5,7 +5,7 @@ class DisplayComments extends Component {
   render() {
     const { content, commentOwnerUsername, createdAt } = this.props.commentData
     return (
-      <p className="card-text">
+      <div className="card-text">
         <span style={{ fontStyle: "italic", color: "#0ca5e297"}}>
           {"Comment by: " } {commentOwnerUsername}
           {" on "}
@@ -15,7 +15,7 @@ class DisplayComments extends Component {
           </time>
         </span>
         <p> { content }</p>
-      </p>
+      </div>
     )
   }
 }

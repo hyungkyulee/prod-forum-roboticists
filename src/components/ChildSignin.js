@@ -71,16 +71,16 @@ export default class ChildSignin extends SignIn {
     return (
       <div className="login-page">
 
-      <div class="login-box" style={{backgroundColor: 'transparent'}}>
-        <div class="login-logo" style={{backgroundColor: 'rgba(0,119,246,0.5', color: '#ffffff'}}>
+      <div className="login-box" style={{backgroundColor: 'transparent'}}>
+        <div className="login-logo" style={{backgroundColor: 'rgba(0,119,246,0.5', color: '#ffffff'}}>
           <a style={{color: '#ffffff'}} href="/"><b><b>Roboticists</b></b> Network</a>
         </div>
-        <div class="card">
-          <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to step forwards</p>
+        <div className="card">
+          <div className="card-body login-card-body">
+            <p className="login-box-msg">Sign in to step forwards</p>
 
             <form onSubmit={this.signIn}>
-              <div class="input-group mb-3">
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   id="username"
@@ -89,13 +89,13 @@ export default class ChildSignin extends SignIn {
                   name="Username"
                   style={{marginTop:'0px'}}
                 />
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-envelope"></span>
                   </div>
                 </div>
               </div>
-              <div class="input-group mb-3">
+              <div className="input-group mb-3">
                 <input
                   type="password"
                   id="password"
@@ -103,16 +103,16 @@ export default class ChildSignin extends SignIn {
                   className="form-control"
                   name="Password"
                 />
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-lock"></span>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-8">
+              <div className="row">
+                <div className="col-8">
                 </div>
-                <div class="col-4">
+                <div className="col-4">
                   <button
                     type="submit"
                     className="btn btn-primary btn-block">

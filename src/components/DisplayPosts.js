@@ -178,9 +178,9 @@ class DisplayPosts extends Component {
             <div className="row">
               <div className="col-md-12">
               {
-                posts.map((post) => {
+                posts.map((post, index) => {
                   return (
-                    <div className="card card-primary card-outline">
+                    <div key={index} className="card card-primary card-outline">
                       <div className="card-header">
                         <h5 className="m-0"> { post.postTitle } </h5>
                       </div>

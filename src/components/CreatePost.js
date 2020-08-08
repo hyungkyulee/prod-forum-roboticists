@@ -58,7 +58,7 @@ class CreatePost extends Component {
           <div className="row">
             <div className="col-md-12">
               <form >
-                <input class="form-control" 
+                <input className="form-control" 
                   type="text" 
                   name="postTitle"
                   placeholder="Title ..."
@@ -78,7 +78,7 @@ class CreatePost extends Component {
 
                 <WysiwygEditor handleChangePostBody={this.handleChangePostBody} />
 
-                <button type="button" class="btn btn-primary" style={{marginBottom: '20px'}}
+                <button type="button" className="btn btn-primary" style={{marginBottom: '20px'}}
                   onClick={this.handleAddPost}>Write a new post</button>
 
               </form>

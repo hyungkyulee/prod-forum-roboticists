@@ -100,6 +100,12 @@ const menuData = [
         url: "https://www.google.com/search?q=canidae",
         nodes: []
       },
+      {
+        key: "signout",
+        label: "Sign Out",
+        url: "https://www.google.com/search?q=canidae",
+        nodes: []
+      },
     ]
   }
 ];
@@ -153,7 +159,12 @@ class MainSideMenu extends Component {
   handlerSideMenuItem = async (key) => {
     console.log(`Route to : /${key}`)
     // this.props.history.push(`/${key}`)
+    if(key === 'accounts/signout') {
+      await Auth.signOut()
+    }
+    
     return (
+
       // <Redirect to={`/${key}`} />
       // <Redirect to='/forums/standards' />
       // await this.props.history.push('/forums/standards')
