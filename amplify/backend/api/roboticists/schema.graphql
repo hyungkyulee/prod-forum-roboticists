@@ -9,7 +9,6 @@ type Post @model{
    likes: [Like] @connection(name: "PostLikes") #relationship with like, and it's array type
   
 }
-
  
 type Comment @model {
    id: ID!
@@ -29,44 +28,64 @@ type Like @model {
    post: Post @connection(name: "PostLikes")
 }
 
+type Company @model{ 
+   id: ID!
+   companyName: String!
+   companyAddress: String!
+   companyCountry: String!
+   companyPostcode: String!
+   companyPhone: String!
+   companyEmail: String!
+   companyBankName: String!
+   companySortcode: String!
+   companyAccountNumber: String!
+   companyAccountHolder: String!
+   companyRegNumber: String
+   companyVAT: String
+   companyBirthday: String
+   createdAt: String
+   invoices: [Invoice] @connection(name: "CompanyInvoices") #relationship with invoice, and it's array type
+   expenses: [Expense] @connection(name: "CompanyExpenses") #relationship with expense, and it's array type
+}
 
-# type Company @model{ 
-#    id: ID!
-#    companyName: String!
-#    companyAddress: String!
-#    companyCountry: String!
-#    companyPostcode: String!
-#    companyPhone: String!
-#    companyEmail: string!
-#    companyBankName: String!
-#    companySortcode: String!
-#    companyAccountNumber: String!
-#    companyAccountHolder: String!
-#    companyRegNumber: String
-#    companyVAT: String
-#    companyBirthday: String
-#    createdAt: String
-#    invoices: [Invoice] @connection(name: "CompanyInvoices") #relationship with invoice, and it's array type
-#    bills: [Bill] @connection(name: "CompanyBills") #relationship with bill, and it's array type
-# }
+type Invoice @model {
+   id: ID!
+   fromName: String!
+   fromAddress: String!
+   fromPhone: String!
+   commentOwnerUsername: String!
+   content: String!
+   createdAt: String!
+   company: Company @connection(name: "CompanyInvoices")
+   products: [Product] @connection(name: "CompanyInvoicesProducts") #relationship with invoice, and it's array type
+}
 
-# type Invoice @model {
-#    id: ID!
-#    fromName: String!
-#    fromAddress: String!
-#    fromPhone: String!
-#    fromPhone: String!
-#    commentOwnerUsername: String!
-#    company: Company @connection(name: "CompanyInvoices")
-#    content: String!
-#    createdAt: String!
-# }
+type Expense @model {
+   id: ID!
+   merchant: String!
+   expenseDate: String!
+   currency: String!
+   amount: Float!
+   remarks: String!
+   category: String!
+   attendees: String!
+   report: String!
+   reimbursable: Boolean!
+   status: String!
+   createdAt: String!
+   company: Company @connection(name: "CompanyExpenses")
+}
 
-# type Bill @model {
-#    id: ID!
-#    commentOwnerId: String!
-#    commentOwnerUsername: String!
-#    company: Company @connection(name: "CompanyBills")
-#    content: String!
-#    createdAt: String!
-# }
+type Product @model {
+   id: ID!
+   name: String!
+   imageUrl: String!
+   price: Float!
+   unit: String!
+   category: String!
+   description: String!
+   inventory: Int!
+   status: String!
+   createdAt: String!
+   invoice: Invoice @connection(name: "CompanyInvoicesProducts")
+}

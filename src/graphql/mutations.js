@@ -295,3 +295,633 @@ export const deleteLike = /* GraphQL */ `
     }
   }
 `;
+export const createCompany = /* GraphQL */ `
+  mutation CreateCompany(
+    $input: CreateCompanyInput!
+    $condition: ModelCompanyConditionInput
+  ) {
+    createCompany(input: $input, condition: $condition) {
+      id
+      companyName
+      companyAddress
+      companyCountry
+      companyPostcode
+      companyPhone
+      companyEmail
+      companyBankName
+      companySortcode
+      companyAccountNumber
+      companyAccountHolder
+      companyRegNumber
+      companyVAT
+      companyBirthday
+      createdAt
+      invoices {
+        items {
+          id
+          fromName
+          fromAddress
+          fromPhone
+          commentOwnerUsername
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      expenses {
+        items {
+          id
+          merchant
+          expenseDate
+          currency
+          amount
+          remarks
+          category
+          attendees
+          report
+          reimbursable
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateCompany = /* GraphQL */ `
+  mutation UpdateCompany(
+    $input: UpdateCompanyInput!
+    $condition: ModelCompanyConditionInput
+  ) {
+    updateCompany(input: $input, condition: $condition) {
+      id
+      companyName
+      companyAddress
+      companyCountry
+      companyPostcode
+      companyPhone
+      companyEmail
+      companyBankName
+      companySortcode
+      companyAccountNumber
+      companyAccountHolder
+      companyRegNumber
+      companyVAT
+      companyBirthday
+      createdAt
+      invoices {
+        items {
+          id
+          fromName
+          fromAddress
+          fromPhone
+          commentOwnerUsername
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      expenses {
+        items {
+          id
+          merchant
+          expenseDate
+          currency
+          amount
+          remarks
+          category
+          attendees
+          report
+          reimbursable
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteCompany = /* GraphQL */ `
+  mutation DeleteCompany(
+    $input: DeleteCompanyInput!
+    $condition: ModelCompanyConditionInput
+  ) {
+    deleteCompany(input: $input, condition: $condition) {
+      id
+      companyName
+      companyAddress
+      companyCountry
+      companyPostcode
+      companyPhone
+      companyEmail
+      companyBankName
+      companySortcode
+      companyAccountNumber
+      companyAccountHolder
+      companyRegNumber
+      companyVAT
+      companyBirthday
+      createdAt
+      invoices {
+        items {
+          id
+          fromName
+          fromAddress
+          fromPhone
+          commentOwnerUsername
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      expenses {
+        items {
+          id
+          merchant
+          expenseDate
+          currency
+          amount
+          remarks
+          category
+          attendees
+          report
+          reimbursable
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const createInvoice = /* GraphQL */ `
+  mutation CreateInvoice(
+    $input: CreateInvoiceInput!
+    $condition: ModelInvoiceConditionInput
+  ) {
+    createInvoice(input: $input, condition: $condition) {
+      id
+      fromName
+      fromAddress
+      fromPhone
+      commentOwnerUsername
+      content
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      products {
+        items {
+          id
+          name
+          imageUrl
+          price
+          unit
+          category
+          description
+          inventory
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateInvoice = /* GraphQL */ `
+  mutation UpdateInvoice(
+    $input: UpdateInvoiceInput!
+    $condition: ModelInvoiceConditionInput
+  ) {
+    updateInvoice(input: $input, condition: $condition) {
+      id
+      fromName
+      fromAddress
+      fromPhone
+      commentOwnerUsername
+      content
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      products {
+        items {
+          id
+          name
+          imageUrl
+          price
+          unit
+          category
+          description
+          inventory
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteInvoice = /* GraphQL */ `
+  mutation DeleteInvoice(
+    $input: DeleteInvoiceInput!
+    $condition: ModelInvoiceConditionInput
+  ) {
+    deleteInvoice(input: $input, condition: $condition) {
+      id
+      fromName
+      fromAddress
+      fromPhone
+      commentOwnerUsername
+      content
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      products {
+        items {
+          id
+          name
+          imageUrl
+          price
+          unit
+          category
+          description
+          inventory
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const createExpense = /* GraphQL */ `
+  mutation CreateExpense(
+    $input: CreateExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    createExpense(input: $input, condition: $condition) {
+      id
+      merchant
+      expenseDate
+      currency
+      amount
+      remarks
+      category
+      attendees
+      report
+      reimbursable
+      status
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateExpense = /* GraphQL */ `
+  mutation UpdateExpense(
+    $input: UpdateExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    updateExpense(input: $input, condition: $condition) {
+      id
+      merchant
+      expenseDate
+      currency
+      amount
+      remarks
+      category
+      attendees
+      report
+      reimbursable
+      status
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteExpense = /* GraphQL */ `
+  mutation DeleteExpense(
+    $input: DeleteExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    deleteExpense(input: $input, condition: $condition) {
+      id
+      merchant
+      expenseDate
+      currency
+      amount
+      remarks
+      category
+      attendees
+      report
+      reimbursable
+      status
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    createProduct(input: $input, condition: $condition) {
+      id
+      name
+      imageUrl
+      price
+      unit
+      category
+      description
+      inventory
+      status
+      createdAt
+      invoice {
+        id
+        fromName
+        fromAddress
+        fromPhone
+        commentOwnerUsername
+        content
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        products {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    updateProduct(input: $input, condition: $condition) {
+      id
+      name
+      imageUrl
+      price
+      unit
+      category
+      description
+      inventory
+      status
+      createdAt
+      invoice {
+        id
+        fromName
+        fromAddress
+        fromPhone
+        commentOwnerUsername
+        content
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        products {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    deleteProduct(input: $input, condition: $condition) {
+      id
+      name
+      imageUrl
+      price
+      unit
+      category
+      description
+      inventory
+      status
+      createdAt
+      invoice {
+        id
+        fromName
+        fromAddress
+        fromPhone
+        commentOwnerUsername
+        content
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        products {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;

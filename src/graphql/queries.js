@@ -51,23 +51,10 @@ export const listPosts = /* GraphQL */ `
         postBody
         createdAt
         comments {
-          # nextToken - change it manually like below
-          items {
-            id
-            commentOwnerId
-            commentOwnerUsername
-            content
-            createdAt
-          }
+          nextToken
         }
         likes {
-          # nextToken - change it manually like below
-          items {
-            id
-            numberLikes
-            likeOwnerId
-            likeOwnerUsername
-          }
+          nextToken
         }
         updatedAt
       }
@@ -179,6 +166,359 @@ export const listLikes = /* GraphQL */ `
           updatedAt
         }
         createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getCompany = /* GraphQL */ `
+  query GetCompany($id: ID!) {
+    getCompany(id: $id) {
+      id
+      companyName
+      companyAddress
+      companyCountry
+      companyPostcode
+      companyPhone
+      companyEmail
+      companyBankName
+      companySortcode
+      companyAccountNumber
+      companyAccountHolder
+      companyRegNumber
+      companyVAT
+      companyBirthday
+      createdAt
+      invoices {
+        items {
+          id
+          fromName
+          fromAddress
+          fromPhone
+          commentOwnerUsername
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      expenses {
+        items {
+          id
+          merchant
+          expenseDate
+          currency
+          amount
+          remarks
+          category
+          attendees
+          report
+          reimbursable
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const listCompanys = /* GraphQL */ `
+  query ListCompanys(
+    $filter: ModelCompanyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getInvoice = /* GraphQL */ `
+  query GetInvoice($id: ID!) {
+    getInvoice(id: $id) {
+      id
+      fromName
+      fromAddress
+      fromPhone
+      commentOwnerUsername
+      content
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      products {
+        items {
+          id
+          name
+          imageUrl
+          price
+          unit
+          category
+          description
+          inventory
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+    }
+  }
+`;
+export const listInvoices = /* GraphQL */ `
+  query ListInvoices(
+    $filter: ModelInvoiceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInvoices(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        fromName
+        fromAddress
+        fromPhone
+        commentOwnerUsername
+        content
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        products {
+          nextToken
+        }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getExpense = /* GraphQL */ `
+  query GetExpense($id: ID!) {
+    getExpense(id: $id) {
+      id
+      merchant
+      expenseDate
+      currency
+      amount
+      remarks
+      category
+      attendees
+      report
+      reimbursable
+      status
+      createdAt
+      company {
+        id
+        companyName
+        companyAddress
+        companyCountry
+        companyPostcode
+        companyPhone
+        companyEmail
+        companyBankName
+        companySortcode
+        companyAccountNumber
+        companyAccountHolder
+        companyRegNumber
+        companyVAT
+        companyBirthday
+        createdAt
+        invoices {
+          nextToken
+        }
+        expenses {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const listExpenses = /* GraphQL */ `
+  query ListExpenses(
+    $filter: ModelExpenseFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listExpenses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        merchant
+        expenseDate
+        currency
+        amount
+        remarks
+        category
+        attendees
+        report
+        reimbursable
+        status
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getProduct = /* GraphQL */ `
+  query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+      id
+      name
+      imageUrl
+      price
+      unit
+      category
+      description
+      inventory
+      status
+      createdAt
+      invoice {
+        id
+        fromName
+        fromAddress
+        fromPhone
+        commentOwnerUsername
+        content
+        createdAt
+        company {
+          id
+          companyName
+          companyAddress
+          companyCountry
+          companyPostcode
+          companyPhone
+          companyEmail
+          companyBankName
+          companySortcode
+          companyAccountNumber
+          companyAccountHolder
+          companyRegNumber
+          companyVAT
+          companyBirthday
+          createdAt
+          updatedAt
+        }
+        products {
+          nextToken
+        }
+        updatedAt
+      }
+      updatedAt
+    }
+  }
+`;
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        imageUrl
+        price
+        unit
+        category
+        description
+        inventory
+        status
+        createdAt
+        invoice {
+          id
+          fromName
+          fromAddress
+          fromPhone
+          commentOwnerUsername
+          content
+          createdAt
+          updatedAt
+        }
         updatedAt
       }
       nextToken
