@@ -290,6 +290,22 @@ amplify publish -> Y
 
 ### React Packages
 
+#### semantic-ui
+
+install semantic-ui package and prop-types
+```
+$ npm install semantic-ui-react semantic-ui-css
+$ npm install prop-types --save
+
+```
+ (* Themes from Semantic UI >=2.3.x require Semantic UI React >=0.81.0.)
+
+at index.js
+```
+import 'semantic-ui-css/semantic.min.css'
+```
+
+
 #### react-icons
 ```
 $ npm install react-icons --save
