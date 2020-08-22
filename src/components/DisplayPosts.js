@@ -9,6 +9,7 @@ import { FaThumbsUp, FaSadTear } from 'react-icons/fa'
 import DisplayComments from './DisplayComments'
 import { createLike } from '../graphql/mutations'
 import WhoLikedPost from './WhoLikedPost'
+import { Image, Item } from 'semantic-ui-react'
 
 
 class DisplayPosts extends Component {
@@ -105,12 +106,22 @@ class DisplayPosts extends Component {
     this.createPostLikeListener.unsubscribe()
   }
 
-  getPosts = async () => {
-    const result = await API.graphql(graphqlOperation(listPosts))
+  getPosts = async (createdAt) => {
+    const queryParams = {
+      createdAt,
+      sortDirection: 'DESC',
+    }; // not working at the moment. it will work with key setup on schema.graphql.
+    const result = await API.graphql(graphqlOperation(listPosts, queryParams))
     // console.log("All Posts: ", JSON.stringify(result.data.listPosts))
     // console.log("All Posts: ", result.data.listPosts.items)
     
-    this.setState({posts: result.data.listPosts.items})
+    // ordering by javascript
+    const sortedPosts = [].concat(result.data.listPosts.items).sort((a,b) => a.createdAt > b.createdAt ? -1 : a.createdAt < b.createdAt ? 1 : 0);
+    
+    // console.log("org:", result.data.listPosts.items)
+    // console.log("sorted:", sortedPosts)
+
+    this.setState({posts: sortedPosts})
   }
 
   isLikedPost = (postId) => {
@@ -173,92 +184,103 @@ class DisplayPosts extends Component {
     const { posts } = this.state
 
     return (
-        <section className="content">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-12">
-              {
-                posts.map((post, index) => {
-                  return (
-                    <div key={index} className="card card-primary card-outline">
-                      <div className="card-header">
-                        <h5 className="m-0"> { post.postTitle } </h5>
-                      </div>
-                      <div className="card-body">
-                        <h6 className="card-title">
-                          <span style={{fontStyle: "italic", color: "#0ca5e29"}}>
-                            { "Wrote by: " } { post.postOwnerUsername }
+      <Item.Group divided>
+      {
+        posts.map((post, index) => {
+          return (
+            <Item key={index}>
+              <Item.Image src='https://picsum.photos/200' />
+              <Item.Content>
+                <Item.Header as='a'>{post.postTitle}</Item.Header>
+                <Item.Meta>
+                  <span>{new Date(post.createdAt).toDateString()}</span>
+                </Item.Meta>
+                <Item.Description>
+                  <p className="post-text" dangerouslySetInnerHTML={{ __html: post.postBody }} />
+                </Item.Description>
+                <Item.Extra>
+                  <Image avatar circular src='https://picsum.photos/60' />
+                  <span>{ "Wrote by: " } { post.postOwnerUsername }</span>
+                </Item.Extra>
+              </Item.Content>
+            </Item>
 
-                            { " on " }
-                            <time>
-                              {" "}
-                              {new Date(post.createdAt).toDateString()}
-                            </time>
-                          </span>
-                        </h6>
-                        {/* <p> {post.postBody}</p> */}
-                        <p className="card-text" dangerouslySetInnerHTML={{ __html: post.postBody }} />
-                        <div className="attachment-block clearfix"></div>
-                        <div className="clearfix">
-                          { (post.postOwnerId === this.state.currentUserId) && 
-                            <DeletePost data={post} />
-                          }
-                          { (post.postOwnerId === this.state.currentUserId) && 
-                            <EditPost {...post} />
-                          }
-                        </div>
-                        <div className="card-text card-feedback" style={{marginBottom: '10px'}}>
-                          <p className="alert"> {(post.postOwnerId === this.state.currentUserId) && this.state.errorMessage} </p>
-                          {/* <p style={{color: (post.likes.items.length>0)? "blue" : "gray"}}
-                            className="like-button"
-                            onMouseEnter={ () => this.handleMouseHover(post.id)}
-                            onMouseLeave={ () => this.handleMouseHoverLeave()}
-                            onClick={() => this.handleLike(post.id)}>
-                            <FaThumbsUp />
-                            {
-                              post.likes.items.length
-                            }
-                          </p> */}
-                          <button type="button" className="btn btn-default btn-sm" style={{width: '80px', marginRight: '5px'}}>
-                            <i className="fas fa-share mr-2" />Share
-                          </button>
-                          <button type="button" className="btn btn-default btn-sm" style={{width: '80px'}}
-                            onClick={() => this.handleLike(post.id)}>
-                            <i className="fas fa-thumbs-up mr-2" />Like
-                          </button>
-                          <span className="float-right text-mute">
-                            {post.comments.items.length} comments
-                          </span>
-                          {/* {
-                            this.state.isHovering &&
-                              <p className="card-text">
-                                {(this.state.likedBy.length === 0) ? "liked by no one" : "liked by:" }
-                                {(this.state.likedBy.length === 0) ? <FaSadTear /> : <WhoLikedPost data={this.state.likedBy} />}
-                              </p>
-                          } */}
-                        </div>
-                          
-                        <div className="card-footer card-comments">
-                          <CreateComment postId={post.id} />
-                          {
-                            post.comments.items.length > 0 && 
-                            <h6 className="card-title" style={{marginBottom: '10px'}}>
-                              {/* Comments:  */}
-                            </h6>
-                          }
-                          {
-                            post.comments.items.map((comment, index) => <DisplayComments key={index} commentData={comment} />)
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-              </div>
-            </div>
-          </div>
-        </section>
+            // <div key={index} className="card card-primary card-outline">
+            //   <div className="card-header">
+            //     <h5 className="m-0"> { post.postTitle } </h5>
+            //   </div>
+            //   <div className="card-body">
+            //     <h6 className="card-title">
+            //       <span style={{fontStyle: "italic", color: "#0ca5e29"}}>
+            //         { "Wrote by: " } { post.postOwnerUsername }
+
+            //         { " on " }
+            //         <time>
+            //           {" "}
+            //           {new Date(post.createdAt).toDateString()}
+            //         </time>
+            //       </span>
+            //     </h6>
+            //     {/* <p> {post.postBody}</p> */}
+            //     <p className="card-text" dangerouslySetInnerHTML={{ __html: post.postBody }} />
+            //     <div className="attachment-block clearfix"></div>
+            //     <div className="clearfix">
+            //       { (post.postOwnerId === this.state.currentUserId) && 
+            //         <DeletePost data={post} />
+            //       }
+            //       { (post.postOwnerId === this.state.currentUserId) && 
+            //         <EditPost {...post} />
+            //       }
+            //     </div>
+            //     <div className="card-text card-feedback" style={{marginBottom: '10px'}}>
+            //       <p className="alert"> {(post.postOwnerId === this.state.currentUserId) && this.state.errorMessage} </p>
+            //       {/* <p style={{color: (post.likes.items.length>0)? "blue" : "gray"}}
+            //         className="like-button"
+            //         onMouseEnter={ () => this.handleMouseHover(post.id)}
+            //         onMouseLeave={ () => this.handleMouseHoverLeave()}
+            //         onClick={() => this.handleLike(post.id)}>
+            //         <FaThumbsUp />
+            //         {
+            //           post.likes.items.length
+            //         }
+            //       </p> */}
+            //       <button type="button" className="btn btn-default btn-sm" style={{width: '80px', marginRight: '5px'}}>
+            //         <i className="fas fa-share mr-2" />Share
+            //       </button>
+            //       <button type="button" className="btn btn-default btn-sm" style={{width: '80px'}}
+            //         onClick={() => this.handleLike(post.id)}>
+            //         <i className="fas fa-thumbs-up mr-2" />Like
+            //       </button>
+            //       <span className="float-right text-mute">
+            //         {/* {post.comments.items.length} comments */}
+            //       </span>
+            //       {/* {
+            //         this.state.isHovering &&
+            //           <p className="card-text">
+            //             {(this.state.likedBy.length === 0) ? "liked by no one" : "liked by:" }
+            //             {(this.state.likedBy.length === 0) ? <FaSadTear /> : <WhoLikedPost data={this.state.likedBy} />}
+            //           </p>
+            //       } */}
+            //     </div>
+                  
+            //     <div className="card-footer card-comments">
+            //       <CreateComment postId={post.id} />
+            //       {/* {
+            //         post.comments.items.length > 0 && 
+            //         <h6 className="card-title" style={{marginBottom: '10px'}}>
+                      
+            //         </h6>
+            //       } */}
+            //       {
+            //         post.comments.items.map((comment, index) => <DisplayComments key={index} commentData={comment} />)
+            //       }
+            //     </div>
+            //   </div>
+            // </div>
+          )
+        })
+      }
+      </Item.Group>
     )
   }
 }

@@ -1,4 +1,8 @@
-body {
+.css-menu-link {
+  color: #00b5ad;
+}
+
+/* body {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -111,7 +115,6 @@ div {
   display: inline-block;
   width: 100%;
   border-radius: 4px;
-  /* border: none; */
   background: #0ca5e297;
   color: #ffffff;
   padding: 7px 20px;
@@ -197,4 +200,4 @@ button:hover{
   to {
     transform: rotate(360deg);
   }
-}
+} */

@@ -1,19 +1,13 @@
 import React from "react"
 import { Auth, JS } from 'aws-amplify'
 import { SignIn } from "aws-amplify-react" 
-import '../../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css'
-import '../../node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css'
-import '../../node_modules/admin-lte/dist/css/adminlte.min.css'
 import { FaRegIdBadge } from "react-icons/fa"
-// import '../../node_modules/admin-lte/plugins/jquery/jquery.min.js'
-// import '../../node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js'
-// import '../../node_modules/admin-lte/dist/js/adminlte.min.js'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 export default class ChildSignin extends SignIn {
   constructor(props) {
     super(props)
 
-    this.signIn = this.signIn.bind(this)
     this.state = {
       message: '',
       loading: false,
@@ -38,14 +32,14 @@ export default class ChildSignin extends SignIn {
     })
   }
 
-  signIn(e) {
+  handleSignIn = async (e) => {
     e.preventDefault()
     this.setState({ message: '', loading: true })
 
     const username = document.getElementById('username').value
     const password = document.getElementById('password').value
 
-    Auth.signIn({
+    await Auth.signIn({
       username, // Required, the username
       password,
     })
@@ -69,66 +63,100 @@ export default class ChildSignin extends SignIn {
 
   showComponent() {
     return (
-      <div className="login-page">
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as='h2' color='teal' textAlign='center'>
+            <Image src='/logo.png' /> Log-in to your email
+          </Header>
+          <Form size='large'>
+            <Segment stacked>
+              <Form.Input 
+                fluid icon='user' 
+                iconPosition='left'
+                placeholder='E-mail address'
+                type='text'
+                id="username"
+              />
 
-      <div className="login-box" style={{backgroundColor: 'transparent'}}>
-        <div className="login-logo" style={{backgroundColor: 'rgba(0,119,246,0.5', color: '#ffffff'}}>
-          <a style={{color: '#ffffff'}} href="/"><b><b>Roboticists</b></b> Network</a>
-        </div>
-        <div className="card">
-          <div className="card-body login-card-body">
-            <p className="login-box-msg">Sign in to step forwards</p>
+              <Form.Input
+                fluid
+                icon='lock'
+                iconPosition='left'
+                placeholder='Password'
+                type='password'
+                id="password"
+              />
 
-            <form onSubmit={this.signIn}>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  id="username"
-                  className="form-control"
-                  placeholder="User Id..."
-                  name="Username"
-                  style={{marginTop:'0px'}}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-envelope"></span>
-                  </div>
-                </div>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password..."
-                  className="form-control"
-                  name="Password"
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-8">
-                </div>
-                <div className="col-4">
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block">
-                    Sign in
-                  </button>
+              <Button color='teal' fluid size='large' onClick={this.handleSignIn}>
+                Login
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            New to us? <a href='#'>Sign Up</a>
+          </Message>
+        </Grid.Column>
+      </Grid>
+      
+      // <div className="login-page">
 
-                </div>
-              </div>
-            </form>
+      // <div className="login-box" style={{backgroundColor: 'transparent'}}>
+      //   <div className="login-logo" style={{backgroundColor: 'rgba(0,119,246,0.5', color: '#ffffff'}}>
+      //     <a style={{color: '#ffffff'}} href="/"><b><b>Roboticists</b></b> Network</a>
+      //   </div>
+      //   <div className="card">
+      //     <div className="card-body login-card-body">
+      //       <p className="login-box-msg">Sign in to step forwards</p>
 
-            {/* {this.state.loading && Loading()} */}
-          </div>
-        </div>
-      </div>
+      //       <form onSubmit={this.signIn}>
+      //         <div className="input-group mb-3">
+      //           <input
+      //             type="text"
+      //             id="username"
+      //             className="form-control"
+      //             placeholder="User Id..."
+      //             name="Username"
+      //             style={{marginTop:'0px'}}
+      //           />
+      //           <div className="input-group-append">
+      //             <div className="input-group-text">
+      //               <span className="fas fa-envelope"></span>
+      //             </div>
+      //           </div>
+      //         </div>
+      //         <div className="input-group mb-3">
+      //           <input
+      //             type="password"
+      //             id="password"
+      //             placeholder="Password..."
+      //             className="form-control"
+      //             name="Password"
+      //           />
+      //           <div className="input-group-append">
+      //             <div className="input-group-text">
+      //               <span className="fas fa-lock"></span>
+      //             </div>
+      //           </div>
+      //         </div>
+      //         <div className="row">
+      //           <div className="col-8">
+      //           </div>
+      //           <div className="col-4">
+      //             <button
+      //               type="submit"
+      //               className="btn btn-primary btn-block">
+      //               Sign in
+      //             </button>
 
-      </div>
+      //           </div>
+      //         </div>
+      //       </form>
+
+      //     </div>
+      //   </div>
+      // </div>
+
+      // </div>
     )
   }
 }

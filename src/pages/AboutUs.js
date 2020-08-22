@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import ContentHeader from '../components/ContentHeader'
 
-export default class Projects extends Component {
+export default class AboutUs extends Component {
   render() {
     return (
       <div>
-        <ContentHeader title="Project Overview" />
+          <ContentHeader title="About Forum" />
+
       </div>
     )
   }

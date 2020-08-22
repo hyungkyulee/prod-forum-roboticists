@@ -1,7 +1,6 @@
 import React, { Children } from 'react'
 import TreeMenu, { ItemComponent, KeyDown }  from 'react-simple-tree-menu'
-import '../styles/global.css'
-import '../../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css'
+import '../styles/global.scss'
 import { Link } from 'react-router-dom'
 
 

@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { Auth } from 'aws-amplify'
-import '../../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css'
-import '../../node_modules/admin-lte/plugins/ion-rangeslider/css/ion.rangeSlider.min.css'
-import '../../node_modules/admin-lte/plugins/bootstrap-slider/css/bootstrap-slider.min.css'
+
 import TreeMenu, { defaultChildren, ItemComponent, } from 'react-simple-tree-menu'
 
 import { Link, Redirect, withRouter } from 'react-router-dom'
 import { TreeviewMenu } from './TreeviewMenu'
-// import { Treeview } from 'admin-lte'
 
 const menuData = [
   {
@@ -175,10 +172,10 @@ class MainSideMenu extends Component {
 
   render() {
     return (
-      <div>
+      <>
 
         {/* Main Sidebar Container */}
-        <div className="main-sidebar sidebar-light-primary elevation-4">
+        <aside className="main-sidebar sidebar-light-primary elevation-4">
           {/* Brand Logo */}
           <a href="/home" className="brand-link">
             <img src="../../roboticists.png" alt="Roboticists Logo" className="brand-image elevation-3" style={{opacity: '1.0'}} />
@@ -196,19 +193,35 @@ class MainSideMenu extends Component {
               </p>
             </div>
             {/* Sidebar Menu */}
+
             <nav className="mt-2">
               {/* <TreeMenu data={this.state.data} hasSearch={false} /> */}
 
-              <ul className="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
-                {/* <TreeView data={this.state.data} /> */}
-                
-                <li className="nav-item">
-                  <a href="/forums/standards" className="nav-link">
-                    <i className="nav-icon fas fa-th" />
-                    <p>Visiton / Mission</p>
+              {/* <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Dashboard
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
                   </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="index.html" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Dashboard v1</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="index.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Dashboard v2</p>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
+              </ul> */}
 
               <TreeviewMenu 
                 data={menuData}
@@ -222,8 +235,8 @@ class MainSideMenu extends Component {
             {/* /.sidebar-menu */}
           </div>
           {/* /.sidebar */}
-        </div>
-      </div>
+        </aside>
+      </>
     )
   }
 }

@@ -1,27 +1,60 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Sidebar,
+  Visibility,
+} from 'semantic-ui-react'
 
 export default class ContentHeader extends Component {
-  render() {
-    const { title } = this.props
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    const {mobile, title} = this.props
     return (
-      <>
-        <section className="content-header"> {/* Content Header (Page header) */}
-            <div className="container-fluid">
-              <div className="row mb-2">
-                <div className="col-sm-6">
-                  <h1>{title}</h1>
-                </div>
-                <div className="col-sm-6">
-                  <ol className="breadcrumb float-sm-right">
-                    <li className="breadcrumb-item"><a href="/">Home</a></li>
-                    <li className="breadcrumb-item active">{title}</li>
-                  </ol>
-                </div>
-              </div>
-            </div>{/* /.container-fluid */}
-          </section>
-      </>
+      <Container text>
+        <Header
+          as='h1'
+          content={title}
+          style={{
+            fontSize: mobile ? '2em' : '4em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+          }}
+        />
+        <Header
+          as='h2'
+          content='Do whatever you want when you want to.'
+          style={{
+            fontSize: mobile ? '1.5em' : '1.7em',
+            fontWeight: 'normal',
+            marginTop: mobile ? '0.5em' : '1.5em',
+          }}
+        />
+        <Button primary size='huge'>
+          Get Started
+          <Icon name='right arrow' />
+        </Button>
+      </Container>
     )
   }
+}
+
+ContentHeader.propTypes = {
+  mobile: PropTypes.bool,
+  title: PropTypes.string,
+
 }

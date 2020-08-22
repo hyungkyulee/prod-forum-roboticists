@@ -1,3 +1,15 @@
+@import './variables.scss';
+
+.menu-link {
+  color: $primary-color;
+}
+.menu-link:hover {
+  color: $secondary-color;
+}
+.test-link {
+  color: $secondary-color;
+}
+
 .rich-editor {
   padding: 1rem;
  }
@@ -19,11 +31,13 @@
   width: 70%;
   margin-bottom: 2rem;
  }
-h4 {
+
+/* 
+ h4 {
  color: '#gray';
 }
 
-/* treevie menu style */
+
 div {
   background-color: transparent;
   border: 0px solid #000;
@@ -31,7 +45,6 @@ div {
 
 .rstm-toggle-icon {
   display: inline-block; 
-  /* background-color: #343a40; */
 }
 .rstm-toggle-icon-symbol {
   width: 2rem;
@@ -48,7 +61,6 @@ div {
   border-top: 2px solid red;
   text-align: left;
   width: 100%;
-  /* background: #343a40;  */
 }
 
 .rstm-tree-item {
@@ -77,4 +89,4 @@ div {
   padding: 1rem 1.5rem;
   border: none;
   width: 100%; 
-}
+} */
