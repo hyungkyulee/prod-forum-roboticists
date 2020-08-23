@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, StyleSheet } from 'react'
 import {
   Container,
   Divider,
@@ -11,11 +11,10 @@ import {
   Menu,
   Segment,
 } from 'semantic-ui-react'
+
 import { Link } from "react-router-dom";
 import { Auth } from 'aws-amplify'
 
-import '../styles/global.scss'
-import '../styles/test.css'
 
 export default class FixedTopMenu extends Component {
   state = { activeItem: 'home' }
@@ -36,10 +35,10 @@ export default class FixedTopMenu extends Component {
             <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
             </Link>
           </Menu.Item>
-          <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} className='menu-link'><Link to="/about">About</Link></Menu.Item>
-          <Menu.Item name='bites' active={activeItem === 'bites'} onClick={this.handleItemClick} className='css-menu-link'><Link to="/bites">Bites</Link></Menu.Item>
+          <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} ><Link to="/about">About</Link></Menu.Item>
+          <Menu.Item name='bites' active={activeItem === 'bites'} onClick={this.handleItemClick} ><Link to="/bites">Bites</Link></Menu.Item>
 
-          <Dropdown item simple text='Forums' style={{color: '#00b5ad'}}>
+          <Dropdown item simple text='Forums' >
             <Dropdown.Menu>
               <Dropdown.Item name='datalego' active={activeItem === 'datalego'} onClick={this.handleItemClick}><Link to="/forum/datalego">DataL:go</Link></Dropdown.Item>
               <Dropdown.Item><Link to="/forum/microbot">Micro-bot</Link></Dropdown.Item>
@@ -56,7 +55,7 @@ export default class FixedTopMenu extends Component {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Dropdown item simple text='Subjects' style={{color: '#00b5ad'}}>
+          <Dropdown item simple text='Subjects'>
             <Dropdown.Menu>
               <Dropdown.Item name='comvision' active={activeItem === 'comvision'} onClick={this.handleItemClick}><Link to="/subject/comvision">Computer Vision</Link></Dropdown.Item>
               <Dropdown.Divider />
@@ -68,13 +67,12 @@ export default class FixedTopMenu extends Component {
 
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input icon='search' placeholder='Search...' style={{borderColor: '#00b5ad', color: '#00b5ad'}} />
+              <Input icon='search' placeholder='Search...' />
             </Menu.Item>
             <Menu.Item
               name='logout'
               active={activeItem === 'logout'}
               onClick={this.handleItemClick, this.handleSignOut}
-              style={{color: '#00b5ad'}}
             />
           </Menu.Menu>
         </Container>
@@ -82,6 +80,8 @@ export default class FixedTopMenu extends Component {
     )
   }
 }
+
+
 
 // const FixedTopMenu = () => (
 

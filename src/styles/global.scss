@@ -1,13 +1,14 @@
 @import './variables.scss';
 
-.menu-link {
-  color: $primary-color;
+.ui.menu .item>a:not(.ui), .ui.menu .item>p:only-child, .ui.menu .text.item>* {
+  color: $primary-color !important;
 }
-.menu-link:hover {
-  color: $secondary-color;
+.ui.secondary.menu .item, i.icon, i.icons, .ui.input {
+  color: $primary-color !important;
 }
-.test-link {
-  color: $secondary-color;
+
+.ui.menu .item>.input input {
+  border-color: $primary-color !important;
 }
 
 .rich-editor {

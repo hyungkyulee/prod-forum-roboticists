@@ -1,6 +1,5 @@
 import React, { Children } from 'react'
 import TreeMenu, { ItemComponent, KeyDown }  from 'react-simple-tree-menu'
-import '../styles/global.scss'
 import { Link } from 'react-router-dom'
 
 
