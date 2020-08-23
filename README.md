@@ -290,6 +290,19 @@ amplify publish -> Y
 
 ### React Packages
 
+#### styled component
+install the package
+```
+$ npm install --save styled-components
+```
+
+usage
+```
+import styled from 'styled-components'
+
+const Button = styled.button``
+```
+
 #### semantic-ui
 
 install semantic-ui package and prop-types
