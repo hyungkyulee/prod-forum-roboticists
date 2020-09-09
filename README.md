@@ -79,7 +79,7 @@ This will be used for react programming after deployment of Amplyfy API, Auth, S
 $ npm i aws-amplify aws-amplify-react
 ```
 
-#### API/Database
+#### API/Database (Graphql)
 we need to create is an API and a database to store our data. This API needs to allow both authenticated and unauthenticated access.
 Authenticated Admin users should be able to create and update items in the database while unauthenticated access will allow us to query the API at build time to fetch the data needed for the application.
 
@@ -218,7 +218,6 @@ Now that we have the base project set up, let’s also go ahead and install the 
 
 5) programme the code 
 
-
 #### Authentication
 complete the authentication setup for this app will need to accomplish the following things:
 Enable users to sign up and sign in
@@ -258,6 +257,101 @@ delete
 ? What kind of access do you want for Guest users? read
 ? Do you want to add a Lambda Trigger for your S3 Bucket? No
 ```
+
+#### APIGW for Crawler Lambda in node.js
+
+1) Create the API Gateway by amplify, followed by the lambda function in Node.js
+```
+$ amplify add api
+? Please select from one of the below mentioned services: REST
+? Provide a friendly name for your resource to be used as a label for this category in the project: crawlerapi
+? Provide a path (e.g., /book/{isbn}): /titles/{tag}
+? Choose a Lambda source Create a new Lambda function
+? Provide a friendly name for your resource to be used as a label for this category in the project: crawlertitledb
+? Provide the AWS Lambda function name: crawlertitledb
+? Choose the runtime that you want to use: NodeJS
+? Choose the function template that you want to use: Hello World
+? Do you want to access other resources in this project from your Lambda function? No
+? Do you want to invoke this function on a recurring schedule? No
+? Do you want to configure Lambda layers for this function? No
+? Do you want to edit the local lambda function now? Yes
+Please edit the file in your editor: /Users/albert/_proj/roboticists/prod-forum-roboticists/amplify/backend/function/crawlertitledb/src/index.js
+? Press enter to continue 
+Successfully added resource crawlertitledb locally.
+
+Next steps:
+Check out sample function code generated in <project-dir>/amplify/backend/function/crawlertitledb/src
+"amplify function build" builds all of your functions currently in the project
+"amplify mock function <functionName>" runs your function locally
+"amplify push" builds all of your local backend resources and provisions them in the cloud
+"amplify publish" builds all of your local backend and front-end resources (if you added hosting category) and provisions them in the cloud
+Succesfully added the Lambda function locally
+? Restrict API access Yes
+? Who should have access? Authenticated and Guest users
+? What kind of access do you want for Authenticated users? create, read, update, delete
+? What kind of access do you want for Guest users? create, read, update
+Successfully updated auth resource locally.
+? Do you want to add another path? No
+Successfully added resource crawlerapi locally
+
+Some next steps:
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+```
+
+2) edit the Lambda function before delopying to server.
+
+```
+const cheerio = require('cheerio')
+const axios = require('axios')
+
+exports.handler = async (event) => {
+
+    axios.get('https://www.broadbandtvnews.com/news/').then((res) => {
+    // Load the web page source code into a cheerio instance
+    const $ = cheerio.load(res.data)
+
+    // The pre.highlight.shell CSS selector matches all `pre` elements
+    // that have both the `highlight` and `shell` class
+    const urlElems = $('header.entry-header')
+
+    // We now loop through all the elements found
+    for (let i = 0; i < urlElems.length; i++) {
+        // Since the URL is within the span element, we can use the find method
+        // To get all span elements with the `s1` class that are contained inside the
+        // pre element. We select the first such element we find (since we have seen that the first span
+        // element contains the URL)
+        const url_a = $(urlElems[i]).find('a.entry-title-link')[0]
+
+        // We proceed, only if the element exists
+        if (url_a) {
+        // We wrap the span in `$` to create another cheerio instance of only the span
+        // and use the `text` method to get only the text (ignoring the HTML)
+        // of the span element
+        const urlText = $(url_a).text()
+
+        // We then print the text on to the console
+        console.log(urlText)
+        }
+    }
+    })
+
+    // TODO implement
+    const response = {
+        statusCode: 200,
+        // body: JSON.stringify('Hello from Lambda!'),
+        body: JSON.stringify('urlText'),
+    };
+    return response;
+};
+```
+
+3) Deploy the changes
+```
+$ amplify push
+
+```
+
 
 
 ### AWS Appsync
