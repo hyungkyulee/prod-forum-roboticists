@@ -1,15 +1,10 @@
-import React, { Component, StyleSheet } from 'react'
+import React, { Component } from 'react'
 import {
   Container,
-  Divider,
   Dropdown,
-  Grid,
-  Header,
   Image,
   Input,
-  List,
   Menu,
-  Segment,
 } from 'semantic-ui-react'
 
 import { Link } from "react-router-dom";
@@ -19,9 +14,10 @@ import { Auth } from 'aws-amplify'
 export default class FixedTopMenu extends Component {
   state = { activeItem: 'home' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  handleSignOut = async () => {
+  handleSignOut = async (e, { name }) => {
+    this.setState({ activeItem: name })
     await Auth.signOut()
   }
 
@@ -72,7 +68,7 @@ export default class FixedTopMenu extends Component {
             <Menu.Item
               name='logout'
               active={activeItem === 'logout'}
-              onClick={this.handleItemClick, this.handleSignOut}
+              onClick={this.handleSignOut}
             />
           </Menu.Menu>
         </Container>

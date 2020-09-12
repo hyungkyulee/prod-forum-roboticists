@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { EditorState, convertToRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
-import { WysiwygPreviewModal } from './WysiwygPreviewModal'
+// import { WysiwygPreviewModal } from './WysiwygPreviewModal'
 import SuggestionsTag from './SuggestionsTag'
 
 const getHtml = editorState =>   draftToHtml(convertToRaw(editorState.getCurrentContent())); //At the top of the class component

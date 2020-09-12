@@ -4,11 +4,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { withAuthenticator } from 'aws-amplify-react'
-import { Auth } from 'aws-amplify'
+import { ConfirmSignIn, ForgotPassword, Loading, RequireNewPassword, SignUp, VerifyContact, withAuthenticator } from 'aws-amplify-react'
 import {
   Container,
-  Grid,
 } from 'semantic-ui-react'
 
 import './App.css'
@@ -71,11 +69,12 @@ function App() {
 export default withAuthenticator(App,
   true, [
   <ChildSignIn />,
-  // <ConfirmSignIn />,
-  // <ForgotPassword />,
-  // <Loading />,
-  // <RequireNewPassword />,
-  // <VerifyContact />
+  <SignUp />,
+  <ConfirmSignIn />,
+  <ForgotPassword />,
+  <Loading />,
+  <RequireNewPassword />,
+  <VerifyContact />
 
 ],
   null,

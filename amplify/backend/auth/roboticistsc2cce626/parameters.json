@@ -1,6 +1,6 @@
 {
     "identityPoolName": "roboticistsc2cce626_identitypool_c2cce626",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "robotic2cce626",
     "userPoolName": "roboticistsc2cce626_userpool_c2cce626",
     "autoVerifiedAttributes": [

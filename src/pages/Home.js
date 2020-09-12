@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import ContentHeader from '../components/ContentHeader'
 
@@ -7,13 +8,8 @@ import {
   Divider,
   Grid,
   Header,
-  Icon,
   Image,
-  List,
-  Menu,
   Segment,
-  Sidebar,
-  Visibility,
 } from 'semantic-ui-react'
 
 export default class Home extends Component {

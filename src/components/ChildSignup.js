@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
-import { Auth, JS } from 'aws-amplify'
+import { API, Auth, JS } from 'aws-amplify'
 import { SignIn } from "aws-amplify-react" 
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
@@ -63,7 +62,6 @@ export default class ChildSignin extends SignIn {
 
   showComponent() {
     return (
-      <>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
@@ -94,11 +92,70 @@ export default class ChildSignin extends SignIn {
             </Segment>
           </Form>
           <Message>
-            New to us? <a href="#" onClick={() => this.changeState('signUp')}>Sign Up</a>
+            New to us? <p onClick={Auth.signUp}>Sign Up</p>
           </Message>
         </Grid.Column>
       </Grid>
-      </>
+      
+      // <div className="login-page">
+
+      // <div className="login-box" style={{backgroundColor: 'transparent'}}>
+      //   <div className="login-logo" style={{backgroundColor: 'rgba(0,119,246,0.5', color: '#ffffff'}}>
+      //     <a style={{color: '#ffffff'}} href="/"><b><b>Roboticists</b></b> Network</a>
+      //   </div>
+      //   <div className="card">
+      //     <div className="card-body login-card-body">
+      //       <p className="login-box-msg">Sign in to step forwards</p>
+
+      //       <form onSubmit={this.signIn}>
+      //         <div className="input-group mb-3">
+      //           <input
+      //             type="text"
+      //             id="username"
+      //             className="form-control"
+      //             placeholder="User Id..."
+      //             name="Username"
+      //             style={{marginTop:'0px'}}
+      //           />
+      //           <div className="input-group-append">
+      //             <div className="input-group-text">
+      //               <span className="fas fa-envelope"></span>
+      //             </div>
+      //           </div>
+      //         </div>
+      //         <div className="input-group mb-3">
+      //           <input
+      //             type="password"
+      //             id="password"
+      //             placeholder="Password..."
+      //             className="form-control"
+      //             name="Password"
+      //           />
+      //           <div className="input-group-append">
+      //             <div className="input-group-text">
+      //               <span className="fas fa-lock"></span>
+      //             </div>
+      //           </div>
+      //         </div>
+      //         <div className="row">
+      //           <div className="col-8">
+      //           </div>
+      //           <div className="col-4">
+      //             <button
+      //               type="submit"
+      //               className="btn btn-primary btn-block">
+      //               Sign in
+      //             </button>
+
+      //           </div>
+      //         </div>
+      //       </form>
+
+      //     </div>
+      //   </div>
+      // </div>
+
+      // </div>
     )
   }
 }

@@ -1,25 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from "react-router-dom";
 import {
   Button,
   Container,
-  Divider,
-  Grid,
   Header,
   Icon,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Sidebar,
-  Visibility,
 } from 'semantic-ui-react'
 
 export default class ContentHeader extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {mobile, title} = this.props
