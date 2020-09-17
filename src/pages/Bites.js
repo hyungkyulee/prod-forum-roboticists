@@ -24,17 +24,20 @@ export default class Bites extends Component {
       'headers': { 
         'x-api-key': 'ook7dD2Cex7VnUhMAZfoS97KFmGBFipx8Jv9ZDV8',
         'Accept': '*/*'
-      }
+      },
+      // 'responseType': 'text'
     })
-    console.log("response", response)
-    // .then(response => {
-    //   // To do
-    //   console.log(response.Value)
-    //   this.setState({crawlerData : response})
-    // })
-    // .catch(error => {
-    //   console.log("Fetch Error ~~!!!")
-    // })
+    .then(response => {
+      // To do
+      console.log(response)
+      this.setState({
+        crawlerData : response,
+        loaded: true,
+      })
+    })
+    .catch(error => {
+      console.log("Fetch Error ~~!!!")
+    })
   }
 
   render() {
@@ -60,18 +63,23 @@ export default class Bites extends Component {
         </Form>
 
         <Item.Group divided>
-          <Item>
-            <Item.Content>
-              {/* <Item.Header as='a'>{post.postTitle}</Item.Header>
-              <Item.Meta>
-                <span>{new Date(post.createdAt).toDateString()}</span>
-              </Item.Meta> */}
-              <Item.Description>
-                {/* <p className="post-text" dangerouslySetInnerHTML={{ __html: post.postBody }} /> */}
-                { (loaded) && <p className="post-text" >{crawlerData}</p> }
-              </Item.Description>
-            </Item.Content>
-          </Item>
+        { 
+          (loaded) && crawlerData.map(title => 
+            <Item key={title}>
+              <Item.Content>
+                {/* <Item.Header as='a'>{post.postTitle}</Item.Header>
+                <Item.Meta>
+                  <span>{new Date(post.createdAt).toDateString()}</span>
+                </Item.Meta> */}
+                <Item.Description>
+                  {/* <p className="post-text" dangerouslySetInnerHTML={{ __html: post.postBody }} /> */}
+                  {/* { (loaded) && <p className="post-text" >{crawlerData}</p> } */}
+                  {title}
+                </Item.Description>
+              </Item.Content>
+            </Item>
+          )
+        }
         </Item.Group>
       </div>
     )

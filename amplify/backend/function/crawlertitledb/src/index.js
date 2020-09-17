@@ -1,15 +1,17 @@
+var AWS = require('aws-sdk');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 let nf_status = 0;
 
 exports.handler = async (event) => {
 
-    // const resData = await getPost();
-    // const resText = await resData.text();
+    console.log(">>> EVENT : ",event);
+    const keyword = event.pathParameters.tag;
+    console.log(">>> Keyword : ",keyword);
     const webPageTags = await getPost();
     // console.log(webPageTags);
-    const webPageTitles = await parseTitles(webPageTags);
-
+    const webPageTitles = await parseTitles(webPageTags, keyword);
+    
     const response = {
         statusCode: nf_status,
         headers: {
@@ -17,19 +19,22 @@ exports.handler = async (event) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
-        body: webPageTitles.toString()
+        body: JSON.stringify(webPageTitles)
+        // body: webPageTitles.toString()
     };
+    console.log(webPageTitles);
 
     return response;
 };
 
-async function parseTitles(source) {
-    let titlesList = [];
+async function parseTitles(source, keyword) {
+    let titlesList = []; 
     const $ = await cheerio.load(source);
     const elementIds = $('header.entry-header');
     for (let i = 0; i < elementIds.length; i++) {
         const title = $(elementIds[i]).find('a.entry-title-link')[0];
-        if(title) {
+        if(title && $(title).text().includes(keyword)) {
+
             titlesList.push($(title).text());
         }
     }
@@ -49,10 +54,6 @@ async function getPost() {
         nf_status = res.status;
         return res.text();
     });
-    // return await fetch(url2, paramsGet).then(res => {
-    //     status = res.status;
-    //     return res.json();
-    // }).then(json => json.text());
 }
 
 // async function sendPost() {
