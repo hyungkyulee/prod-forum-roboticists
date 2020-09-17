@@ -5,7 +5,7 @@ export default class AboutUs extends Component {
   render() {
     return (
       <div>
-          <ContentHeader title="About Forum" />
+          <ContentHeader title="About Forum" tagline="tagline for roboticists.net ..."/>
 
       </div>
     )

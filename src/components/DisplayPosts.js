@@ -199,6 +199,14 @@ class DisplayPosts extends Component {
                   <p className="post-text" dangerouslySetInnerHTML={{ __html: post.postBody }} />
                 </Item.Description>
                 <Item.Extra>
+                  { (post.postOwnerId === this.state.currentUserId) 
+                    && <DeletePost data={post} />
+                  }
+                  { (post.postOwnerId === this.state.currentUserId) 
+                    && <EditPost {...post} />
+                  }
+                </Item.Extra>
+                <Item.Extra>
                   <Image avatar circular src='https://picsum.photos/60' />
                   <span>{ "Wrote by: " } { post.postOwnerUsername }</span>
                 </Item.Extra>

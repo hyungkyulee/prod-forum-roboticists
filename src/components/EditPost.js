@@ -1,5 +1,6 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import React, {Component} from 'react'
+import { Button } from 'semantic-ui-react'
 import { updatePost } from '../graphql/mutations'
 
 class EditPost extends Component {
@@ -89,7 +90,7 @@ class EditPost extends Component {
           </div>
         )
       }
-      <button className="btn btn-primary" style={{marginRight: '10px'}} onClick={this.handleModal}>Edit</button>
+      <Button primary style={{marginRight: '10px'}} onClick={this.handleModal}>Edit</Button>
       </>
     )
   }

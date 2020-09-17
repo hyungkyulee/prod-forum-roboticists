@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import React, {Component} from 'react'
 import { deletePost } from '../graphql/mutations'
+import { Button } from 'semantic-ui-react'
 
 class DeletePost extends Component {
 
@@ -12,7 +13,7 @@ class DeletePost extends Component {
   render() {
     const post = this.props.data
     return (
-      <button className="btn btn-primary" style={{marginRight: '10px'}} onClick={ () => this.handleDeletePost(post.id)}>Delete</button>
+      <Button secondary onClick={ () => this.handleDeletePost(post.id) }>Delete</Button>
     )
   }
 }
