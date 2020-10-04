@@ -20,7 +20,7 @@ export default class Bites extends Component {
   handleLoadTitles = async () => {
     const {keyword} = this.state
 
-    const response = await API.get("crawlerapi", `/titles/${keyword}`, {
+    await API.get("crawlerapi", `/titles/${keyword}`, {
       'headers': { 
         'x-api-key': 'ook7dD2Cex7VnUhMAZfoS97KFmGBFipx8Jv9ZDV8',
         'Accept': '*/*'
@@ -36,7 +36,7 @@ export default class Bites extends Component {
       })
     })
     .catch(error => {
-      console.log("Fetch Error ~~!!!")
+      console.log(error)
     })
   }
 

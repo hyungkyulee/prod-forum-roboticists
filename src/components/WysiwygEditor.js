@@ -5,7 +5,7 @@ import draftToHtml from 'draftjs-to-html'
 // import { WysiwygPreviewModal } from './WysiwygPreviewModal'
 import SuggestionsTag from './SuggestionsTag'
 
-const getHtml = editorState =>   draftToHtml(convertToRaw(editorState.getCurrentContent())); //At the top of the class component
+// const getHtml = editorState =>   draftToHtml(convertToRaw(editorState.getCurrentContent())); //At the top of the class component
 
 class WysiwygEditor extends Component {
 
@@ -34,14 +34,16 @@ class WysiwygEditor extends Component {
   };
 
   onEditorStateChange = editorState => {
-    this.setState({ editorState })
-    // this.props.handleChangePostBody(this.state.editorState.getCurrentContent())
+    this.setState({ editorState})
+    // console.log(">> props: ", props)
+
     // const contentState = this.state.editorState.getCurrentContent();
     // const raw = convertToRaw(contentState);
-    // console.log("current Content: ", JSON.stringify(raw))
+    // console.log("current Content: ", editorState)
     // console.log("current Content: ", raw)
     // console.log(getHtml(editorState))
-    this.props.handleChangePostBody(getHtml(editorState))
+
+    this.props.handleChangePostBody(draftToHtml(convertToRaw(editorState.getCurrentContent())))
   }
 
   /* cannot do both with onEditorStateChange */
@@ -89,4 +91,4 @@ class WysiwygEditor extends Component {
   } 
 }
 
-export { WysiwygEditor };
+export default WysiwygEditor;

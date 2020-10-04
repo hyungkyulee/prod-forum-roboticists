@@ -25,7 +25,6 @@ export default class FixedTopMenu extends Component {
     const { activeItem } = this.state
     return (
       <Menu secondary stackable>
-        <Container>
           <Menu.Item header >
             <Link to="/">
             <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
@@ -71,7 +70,6 @@ export default class FixedTopMenu extends Component {
               onClick={this.handleSignOut}
             />
           </Menu.Menu>
-        </Container>
       </Menu>
     )
   }

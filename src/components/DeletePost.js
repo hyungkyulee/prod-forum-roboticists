@@ -13,7 +13,7 @@ class DeletePost extends Component {
   render() {
     const post = this.props.data
     return (
-      <Button secondary onClick={ () => this.handleDeletePost(post.id) }>Delete</Button>
+      <Button color='red' onClick={ () => this.handleDeletePost(post.id) }>Delete</Button>
     )
   }
 }

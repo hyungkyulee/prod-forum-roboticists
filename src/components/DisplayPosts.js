@@ -4,11 +4,11 @@ import { onCreateComment, onCreateLike, onCreatePost, onDeletePost, onUpdatePost
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import DeletePost from './DeletePost'
 import EditPost from './EditPost'
-import CreateComment from './CreateComment'
-import { FaThumbsUp, FaSadTear } from 'react-icons/fa'
-import DisplayComments from './DisplayComments'
+// import CreateComment from './CreateComment'
+// import { FaThumbsUp, FaSadTear } from 'react-icons/fa'
+// import DisplayComments from './DisplayComments'
 import { createLike } from '../graphql/mutations'
-import WhoLikedPost from './WhoLikedPost'
+// import WhoLikedPost from './WhoLikedPost'
 import { Image, Item } from 'semantic-ui-react'
 
 
@@ -203,7 +203,8 @@ class DisplayPosts extends Component {
                     && <DeletePost data={post} />
                   }
                   { (post.postOwnerId === this.state.currentUserId) 
-                    && <EditPost {...post} />
+                    && <EditPost data={post} />
+                    // && <EditPost {...post} />
                   }
                 </Item.Extra>
                 <Item.Extra>
@@ -291,13 +292,6 @@ class DisplayPosts extends Component {
       </Item.Group>
     )
   }
-}
-
-const rowStyle = {
-  background: '#f4f4f4',
-  padding: '10px',
-  border: '1px #ccc dotted',
-  margin: '14px'
 }
 
 export default DisplayPosts

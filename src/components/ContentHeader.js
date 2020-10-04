@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Button,
-  Container,
-  Header,
-  Icon,
-} from 'semantic-ui-react'
+import {Header} from 'semantic-ui-react'
 
 export default class ContentHeader extends Component {
 
@@ -35,10 +30,6 @@ export default class ContentHeader extends Component {
             marginBottom: mobile ? '1em' : '2em',
           }}
         />
-        {/* <Button primary size='huge'>
-          Get Started
-          <Icon name='right arrow' />
-        </Button> */}
       </>
     )
   }
