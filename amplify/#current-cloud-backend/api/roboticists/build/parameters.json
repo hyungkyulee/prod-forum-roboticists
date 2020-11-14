@@ -1,0 +1,8 @@
+{
+    "CreateAPIKey": 1,
+    "AppSyncApiName": "roboticists",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "S3DeploymentBucket": "amplify-roboticists-prod-235753-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/34b6837014a03636884b6a89728bdb183bc54e6a"
+}

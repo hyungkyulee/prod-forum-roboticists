@@ -2,22 +2,9 @@
     "paths": [
         {
             "name": "/titles/{tag}",
-            "lambdaFunction": "crawlertitledb",
+            "lambdaFunction": "scraperweb",
             "privacy": {
-                "protected": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ],
-                "unauth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH"
-                ]
+                "open": true
             }
         }
     ],
@@ -25,24 +12,24 @@
     "apiName": "crawlerapi",
     "functionArns": [
         {
-            "lambdaFunction": "crawlertitledb"
+            "lambdaFunction": "scraperweb"
         }
     ],
     "privacy": {
-        "auth": 1,
-        "unauth": 1,
+        "auth": 0,
+        "unauth": 0,
         "authRoleName": "amplify-roboticists-prod-235753-authRole",
         "unAuthRoleName": "amplify-roboticists-prod-235753-unauthRole"
     },
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "crawlertitledb",
+            "resourceName": "scraperweb",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
     ],
-    "uuid": "351f58e0"
+    "uuid": "cf83589f"
 }

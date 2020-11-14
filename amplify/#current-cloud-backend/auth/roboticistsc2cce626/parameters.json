@@ -1,0 +1,54 @@
+{
+    "identityPoolName": "roboticistsc2cce626_identitypool_c2cce626",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "robotic2cce626",
+    "userPoolName": "roboticistsc2cce626_userpool_c2cce626",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "userpoolClientLambdaRole": "robotic2cce626_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "c2cce626",
+    "resourceName": "roboticistsc2cce626",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email"
+    ],
+    "userPoolGroupList": [],
+    "dependsOn": []
+}

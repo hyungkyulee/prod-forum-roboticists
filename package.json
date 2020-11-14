@@ -10,7 +10,6 @@
     "aws-amplify-react": "^4.1.19",
     "axios": "^0.20.0",
     "bower": "^1.8.8",
-    "cheerio": "^1.0.0-rc.3",
     "cheerio-react-bind": "^1.2.0",
     "crawler": "^1.2.2",
     "draft-js": "^0.11.6",

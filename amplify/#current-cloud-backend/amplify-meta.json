@@ -1,0 +1,113 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-roboticists-prod-235753-authRole",
+      "UnauthRoleArn": "arn:aws:iam::830878017923:role/amplify-roboticists-prod-235753-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::830878017923:role/amplify-roboticists-prod-235753-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-roboticists-prod-235753-deployment",
+      "UnauthRoleName": "amplify-roboticists-prod-235753-unauthRole",
+      "StackName": "amplify-roboticists-prod-235753",
+      "StackId": "arn:aws:cloudformation:eu-west-1:830878017923:stack/amplify-roboticists-prod-235753/807062c0-c625-11ea-9a3f-069423446670",
+      "AmplifyAppId": "doaw8a5y7ij47"
+    }
+  },
+  "api": {
+    "roboticists": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "description": "",
+              "apiKeyExpirationDays": "100"
+            }
+          }
+        },
+        "GraphQLAPIIdOutput": "lkroqk4bl5bfnealmdknzmsqq4",
+        "GraphQLAPIEndpointOutput": "https://ixklwvn73bbrpj4aasxv6f4lue.appsync-api.eu-west-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-nj36ob4kdnaf7jegfk4ij5htky"
+      },
+      "lastPushTimeStamp": "2020-10-04T22:08:45.906Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roboticists-prod-235753-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiroboticists"
+      },
+      "lastPushDirHash": "oRyMyZuAynTTaQ8jr26Xn2V51fw="
+    },
+    "crawlerapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "crawlertitledb",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "output": {
+        "ApiName": "crawlerapi",
+        "RootUrl": "https://qeirc5jml9.execute-api.eu-west-1.amazonaws.com/prod",
+        "ApiId": "qeirc5jml9"
+      },
+      "lastPushTimeStamp": "2020-10-04T22:08:45.906Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roboticists-prod-235753-deployment/amplify-cfn-templates/api/crawlerapi-cloudformation-template.json",
+        "logicalId": "apicrawlerapi"
+      },
+      "lastPushDirHash": "gDNY7dqVuupIpU3t8ecV6HUSJtY="
+    }
+  },
+  "auth": {
+    "roboticistsc2cce626": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "output": {
+        "AppClientSecret": "1eglqdarbav1g3gc9e2p59uqkci9tdlat3j7vobji91bstb7fdsi",
+        "UserPoolId": "eu-west-1_N8udMNHWv",
+        "AppClientIDWeb": "4b8svikufrnjrjp83vg9ohtdro",
+        "AppClientID": "q8kmgva3n6aq46v69pfbve1d0",
+        "IdentityPoolId": "eu-west-1:e6af9463-f9cb-497f-9899-8f3b22ac27eb",
+        "IdentityPoolName": "roboticistsc2cce626_identitypool_c2cce626__prod",
+        "UserPoolName": "roboticistsc2cce626_userpool_c2cce626"
+      },
+      "lastPushTimeStamp": "2020-10-04T22:08:45.906Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roboticists-prod-235753-deployment/amplify-cfn-templates/auth/roboticistsc2cce626-cloudformation-template.yml",
+        "logicalId": "authroboticistsc2cce626"
+      },
+      "lastPushDirHash": "RBsDyP8SOEB1e7xtFh7GqhCX46U="
+    }
+  },
+  "function": {
+    "crawlertitledb": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [],
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:830878017923:function:crawlertitledb-prod",
+        "Name": "crawlertitledb-prod",
+        "LambdaExecutionRole": "roboticistsLambdaRoleacc9c057-prod"
+      },
+      "lastPushTimeStamp": "2020-10-04T22:08:45.906Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roboticists-prod-235753-deployment/amplify-cfn-templates/function/crawlertitledb-cloudformation-template.json",
+        "logicalId": "functioncrawlertitledb"
+      },
+      "lastBuildTimeStamp": "2020-10-04T22:07:42.305Z",
+      "lastPackageTimeStamp": "2020-10-04T22:07:44.767Z",
+      "distZipFilename": "crawlertitledb-59384d6b4c4a78724879-build.zip",
+      "lastPushDirHash": "Hj7KRsUa/9U8JZdBxxqWuvpCIAY="
+    }
+  }
+}

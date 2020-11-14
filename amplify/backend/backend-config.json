@@ -1,50 +1,80 @@
 {
-    "api": {
-        "roboticists": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY",
-                        "apiKeyConfig": {
-                            "description": "",
-                            "apiKeyExpirationDays": "100"
-                        }
-                    }
-                }
-            }
-        },
-        "crawlerapi": {
-            "service": "API Gateway",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [
-                {
-                    "category": "function",
-                    "resourceName": "crawlertitledb",
-                    "attributes": [
-                        "Name",
-                        "Arn"
-                    ]
-                }
-            ]
-        }
-    },
-    "auth": {
-        "roboticistsc2cce626": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
-        }
-    },
-    "function": {
-        "crawlertitledb": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda",
-            "dependsOn": []
-        }
-    }
+	"api": {
+		"roboticists": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "",
+							"apiKeyExpirationDays": "100"
+						}
+					}
+				}
+			}
+		},
+		"crawlerapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "crawlertitledb",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"auth": {
+		"roboticistsc2cce626": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
+	"function": {
+		"crawlertitledb": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": []
+		},
+		"scraper": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "crawlerapi",
+					"attributes": [
+						"ApiName",
+						"ApiId"
+					]
+				}
+			]
+		},
+		"scraperweb": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "crawlerapi",
+					"attributes": [
+						"ApiName",
+						"ApiId"
+					]
+				}
+			]
+		}
+	}
 }

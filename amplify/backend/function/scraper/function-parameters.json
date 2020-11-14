@@ -1,0 +1,15 @@
+{
+  "mutableParametersState": {
+    "permissions": {
+      "api": {
+        "crawlerapi": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  },
+  "lambdaLayers": []
+}

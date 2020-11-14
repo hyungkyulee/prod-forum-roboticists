@@ -1,7 +1,8 @@
-var AWS = require('aws-sdk');
+// var AWS = require('aws-sdk');
 const fetch = require('node-fetch');
-const cheerio = require('cheerio');
-const url = require('url');
+// const cheerio = require('cheerio');
+const googleNewsScraper = require('google-news-scraper');
+// const url = require('url');
 let nf_status = 0;
 
 exports.handler = async (event) => {
@@ -19,7 +20,8 @@ exports.handler = async (event) => {
     // console.log(webPageTags);
     // const webPageTitles = await parseTitles(webPageTags, keyword);
 
-    var webPageTags = await scraperGoogle(keyword);
+    // var webPageTags = await scraperGoogle(keyword);
+    var webPageTags = await scraperGoogleNews(keyword);
     // console.log(webPageTags);
 
     var titleExp = /<div class=\"BNeawe s3v9rd AP7Wnd([\s\S]*?)<\/div>/gi;
@@ -49,8 +51,20 @@ exports.handler = async (event) => {
     return response;
 };
 
+async function scraperGoogleNews(keyword) {
+    const articles = await googleNewsScraper({
+        searchTerm: keyword,
+        prettyURLs: true,
+        timeframe: "5d"
+    })
+
+    console.log("articles: ", articles);
+    return articles;
+  
+  }
+
 async function scraperGoogle(keyword) {
-    const url2 = "https://www.google.co.uk/search?q="+encodeURIComponent(keyword);
+    const url2 = "https://www.google.com/search?q="+encodeURIComponent(keyword);
     // const url2 = "https://www.google.co.uk/search?biw=1471&bih=681&tbm=nws&sxsrf=ALeKk02rySLXtE59FIolxszNKOi_xCK5dw%3A1600547522193&ei=wmpmX7OsC4mE1fAPmfqg4Ag&q=bank+money+laundering&oq=bank+money&gs_l=psy-ab.3.0.0.22295.24929.0.30554.7.5.0.2.2.0.51.242.5.5.0....0...1c.1.64.psy-ab..0.7.245....0.qR5DvlODX58";
   
     console.log(url2);
@@ -77,37 +91,37 @@ async function scraperGoogle(keyword) {
     });
   }
 
-async function parseTitles(source, keyword) {
-    let titlesList = []; 
-    const $ = await cheerio.load(source);
-    // const elementIds = $('header.entry-header');
-    const elementIds = $('div.nDgy9d');
-    for (let i = 0; i < elementIds.length; i++) {
-        // const title = $(elementIds[i]).find('a.entry-title-link')[0];
-        const title = $(elementIds[i]).find('div.Y3v8qd')[0];
-        if(title && $(title).text().includes(keyword)) {
+// async function parseTitles(source, keyword) {
+//     let titlesList = []; 
+//     const $ = await cheerio.load(source);
+//     // const elementIds = $('header.entry-header');
+//     const elementIds = $('div.nDgy9d');
+//     for (let i = 0; i < elementIds.length; i++) {
+//         // const title = $(elementIds[i]).find('a.entry-title-link')[0];
+//         const title = $(elementIds[i]).find('div.Y3v8qd')[0];
+//         if(title && $(title).text().includes(keyword)) {
 
-            titlesList.push($(title).text());
-        }
-    }
-    return titlesList;
-}
+//             titlesList.push($(title).text());
+//         }
+//     }
+//     return titlesList;
+// }
 
-async function getPost() {
+// async function getPost() {
 
-    const url1 = url.parse('https://www.google.co.uk/search?biw=1471&bih=681&tbm=nws&sxsrf=ALeKk02rySLXtE59FIolxszNKOi_xCK5dw%3A1600547522193&ei=wmpmX7OsC4mE1fAPmfqg4Ag&q=bank+money+laundering&oq=bank+money&gs_l=psy-ab.3.0.0.22295.24929.0.30554.7.5.0.2.2.0.51.242.5.5.0....0...1c.1.64.psy-ab..0.7.245....0.qR5DvlODX58');
-    // const url2 = "https://www.broadbandtvnews.com/news/";
+//     const url1 = url.parse('https://www.google.co.uk/search?biw=1471&bih=681&tbm=nws&sxsrf=ALeKk02rySLXtE59FIolxszNKOi_xCK5dw%3A1600547522193&ei=wmpmX7OsC4mE1fAPmfqg4Ag&q=bank+money+laundering&oq=bank+money&gs_l=psy-ab.3.0.0.22295.24929.0.30554.7.5.0.2.2.0.51.242.5.5.0....0...1c.1.64.psy-ab..0.7.245....0.qR5DvlODX58');
+//     // const url2 = "https://www.broadbandtvnews.com/news/";
 
-    const paramsGet = {
-        method: "GET",
-        mode: "cors"
-    };
+//     const paramsGet = {
+//         method: "GET",
+//         mode: "cors"
+//     };
 
-    return await fetch(url1, paramsGet).then(res => {
-        nf_status = res.status;
-        return res.text();
-    });
-}
+//     return await fetch(url1, paramsGet).then(res => {
+//         nf_status = res.status;
+//         return res.text();
+//     });
+// }
 
 // async function sendPost() {
 

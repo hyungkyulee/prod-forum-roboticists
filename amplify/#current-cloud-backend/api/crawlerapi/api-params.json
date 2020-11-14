@@ -1,0 +1,48 @@
+{
+    "paths": [
+        {
+            "name": "/titles/{tag}",
+            "lambdaFunction": "crawlertitledb",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH"
+                ]
+            }
+        }
+    ],
+    "resourceName": "crawlerapi",
+    "apiName": "crawlerapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "crawlertitledb"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-roboticists-prod-235753-authRole",
+        "unAuthRoleName": "amplify-roboticists-prod-235753-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "crawlertitledb",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "351f58e0"
+}

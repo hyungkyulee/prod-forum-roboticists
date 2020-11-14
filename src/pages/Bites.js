@@ -20,20 +20,22 @@ export default class Bites extends Component {
   handleLoadTitles = async () => {
     const {keyword} = this.state
 
-    await API.get("crawlerapi", `/titles/${keyword}`, {
+    await API.get("datalego", `/scrap/news/${keyword}`, {
+    // await API.get("datalego", "/msg", {
       'headers': { 
         'x-api-key': 'ook7dD2Cex7VnUhMAZfoS97KFmGBFipx8Jv9ZDV8',
-        'Accept': '*/*'
+        'Accept': '*/*',
       },
       // 'responseType': 'text'
     })
     .then(response => {
       // To do
-      console.log(response)
+      console.log(`>>> res: ${response}`)
       this.setState({
-        crawlerData : response,
+        crawlerData : response.message,
         loaded: true,
       })
+      console.log(this.state.crawlerData)
     })
     .catch(error => {
       console.log(error)
@@ -64,17 +66,20 @@ export default class Bites extends Component {
 
         <Item.Group divided>
         { 
-          (loaded) && crawlerData.map(title => 
-            <Item key={title}>
+          (loaded) && crawlerData.map( (article, index) => 
+            <Item key={index}>
               <Item.Content>
-                {/* <Item.Header as='a'>{post.postTitle}</Item.Header>
+                <Item.Header as='a'>{article.title}</Item.Header>
                 <Item.Meta>
-                  <span>{new Date(post.createdAt).toDateString()}</span>
-                </Item.Meta> */}
+                  <span>{article.source}</span>
+                </Item.Meta>
+                <Item.Meta>
+                  <span>{article.link}</span>
+                </Item.Meta>
                 <Item.Description>
-                  {/* <p className="post-text" dangerouslySetInnerHTML={{ __html: post.postBody }} /> */}
-                  {/* { (loaded) && <p className="post-text" >{crawlerData}</p> } */}
-                  {title}
+                  {
+                    (article.body === '') ? article.subtitle : article.body
+                  }
                 </Item.Description>
               </Item.Content>
             </Item>
