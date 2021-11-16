@@ -4,7 +4,7 @@
   "description": "serverless",
   "license": "Apache-2.0",
   "dependencies": {
-    "aws-sdk": "^2.787.0",
+    "aws-sdk": "^2.814.0",
     "google-news-scraper": "^1.0.4",
     "node-fetch": "^2.6.1"
   },
